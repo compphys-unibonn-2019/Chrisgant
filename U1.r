@@ -1,2 +1,4 @@
 #test
-3
+x <- 42
+print('Hello World!')
+print(x)
