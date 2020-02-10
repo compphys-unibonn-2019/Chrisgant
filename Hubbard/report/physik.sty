@@ -1,0 +1,43 @@
+\ProvidesPackage{physik}[Christophs Physik Paket]
+%general
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+\RequirePackage{float}
+\RequirePackage[position=b]{subcaption}
+\usepackage{multirow}
+%language
+\RequirePackage{babel}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+%math
+%\RequirePackage[charter, greekuppercase=italicized]{mathdesign}
+\usepackage{upgreek}
+\RequirePackage{isomath}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{xfrac}
+%physics
+\RequirePackage{physics}
+\RequirePackage{siunitx}
+\RequirePackage{braket}
+\RequirePackage{tikz-feynman}
+\RequirePackage{tikz}
+%
+\RequirePackage[
+%backend=biber,
+style=alphabetic,
+%isbn=false,
+%pagetracker=false,
+%maxbibnames=50,
+%maxcitenames=2,
+%autocite=inline,
+%block=space,
+%backref=false,
+%backrefstyle=three+,
+%date=short,
+hyperref=true
+]{biblatex}
+
+%new commands
+\newcommand\figref{\figurename~\ref}
