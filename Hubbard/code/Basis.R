@@ -14,8 +14,17 @@ N_set <- function(L, N) {
 
 Nd_set <- function(L, Nd, Nu){
     x <- N_set(L, Nu+Nd)
+    if(is.null(nrow(x))){
+        s <- sum(x[1:L])
+        if(s == Nd){
+            return(x)
+        }else {
+            return(NULL)
+        }
+    }
     s <- rowSums(x[,1:L])
     return(x[which(s == Nd),])
 }
 
+#############Test area#############################
 #Nd_set(5,2,1)
