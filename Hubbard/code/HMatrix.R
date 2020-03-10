@@ -1,3 +1,5 @@
+#TODO matrix -> sparseMatrix
+
 source("Basis.R")
 source("Hamiltonian.R")
 
@@ -89,5 +91,6 @@ H_N_split <- function(L,N,t,U){
 #H_Nd(2,1,1,1,3)
 #H_N_split(2,2,1,3)
 
-
-eigen(H_L(1,1,3))
+A <- matrix(data = c(0,1,1,0), nrow = 2)
+eigen(A)
+eigen(H_L(2,1,3))
