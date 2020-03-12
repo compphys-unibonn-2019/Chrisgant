@@ -19,6 +19,18 @@ deltaH <- function(h, S, t=1, U=3, continuous=TRUE){	#! unsure				H|Psi> = E|Psi
 	#? Energy expectation value?
 }
 
+H <- function(S, t=1, U=3, continuous=TRUE){
+	L <- length(S)/2
+	H_pot <- U * (S[1:L] %*% S[(L+1):(2*L)])[1]
+	n <- 0
+	for(i in which(S==0)){
+		n <- n + sum(S[getNeighbors(L=L,i=i,continuous=continuous)])
+	}
+	H_kin <- -t * n
+	H <- H_pot + H_kin
+	return(H)
+}
+
 getNeighbors <- function(L, i, continuous=TRUE){
 	neighbors <- c()
 	if(i == 1 | i == L + 1){
@@ -71,9 +83,12 @@ HubbardPlot <- function(S){
 
 Metropolis <- function(N=100, L=6, Nd = L/2, Nu = L/2, beta=1, t=1, U=3,continuous=TRUE){
 	S <- HubbardInit(L=L, Nd=Nd, Nu=Nu)
+	E <- numeric()
 	for(i in 1:N){
-		print(S)
+		#print(S)
 		S <- HubbardSweep(S=S, beta=beta, t=t, U=U, continuous=continuous)$S
+		E[i] <- H(S)
 	}
+	print(sum(E)/N)
 	return(invisible(S))
 }
