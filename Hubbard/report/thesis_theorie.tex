@@ -4,16 +4,16 @@
 %==============================================================================
 
 \section{Hubbard-Modell}
-Das Hubbard-Modell, benannt nach dem britischen Physiker John Hubbard, wird hauptsächlich in der Festkörper-Physik verwendet. Es beschreibt ein Material als Gitter auf dem Teilchen (normalerweise Elektronen) zu einem benachbarten Gitter-Punkt springen können, sofern dabei das Pauli-Prinzip nicht verletzt wird und sich nur gegenseitig abstoßen Wenn sie sich auf der selben Position im Gitter befinden. In \ref{fig:pic2} wird dieses Gitter für den zweidimensionalen Fall schematisch gezeigt. Die Berücksichtigung der Abstoßung unterscheidet, dass Hubbard-Modell von einigen anderen Modellen und ermöglicht ihm, beispielsweise den Übergang zwischen Leiter und Isolator in bestimmten Metall-Oxiden zu beschreiben. Der Hamilton-Operator dieses Modells sieht wie folgt aus \cite{Hubbard}:
+The Hubbard model, named after british Physicist John Hubbard, is a model mostly used in Condensed Matter Physics. It describes matter as a lattice on which sites particles e.g. electrons can hop to another lattice site, while in case of fermions they must, of course, respect the Pauli principle. Furthermore a Coulomb repulsion is assumed between electrons at the same lattice site. Figure \ref{fig:pic2} shows the lattice for a 2D material schematically. The onsite Coulomb repulsion is a feature that distinguishes the Hubbard model from most other models and enables it for instance to describe the transition from a metal to an insulator in certain materials. The Hamilton operator of the Hubbard model reads \cite{Hubbard}:
 \begin{equation}\label{Hubbard_original}
 H = \sum_{i,j}\sum_{\sigma}T_{ij} c_{i\sigma}^\dag c_{j\sigma} + \frac{I}{2} \sum_{i}n_{i\uparrow}n_{i\downarrow} - \frac{I}{2}Nn^2
 \end{equation}
-Hier ist $ c^\dag $ der Erzeugungs-Operator, $ c $ der Vernichtungs-Operator und $ n = c^\dag c $ der Besetzungszahl-Operator. Der Sprung von einem Platz zu einem Anderen wird als Vernichtung des Teilchens auf der Ursprungsposition und der Erzeugung auf der Zielposition beschrieben. Der Parameter I steht für die Potentielle Energie aufgrund der Coulomb-Abstoßung. Das Matrixelement $ T_{ij} $ gibt die kinetische Energie eines Elektrons beim Sprung von Gitterpunkt $ i $ zu Gitterpunkt $ j $ an und ist abhängig vom Überlapp der beiden Orbitale. Zusätzlich zu der Annahme, dass die Abstoßenden Kräfte nur zwischen Elektronen auf dem selben Platz wirken, wird angenommen, dass Elektronen nur zu ihrem nächsten Nachbarn springen, dies bedeutet für ein homogenes Gitter $ T_{ij} \approx -t\delta_{\langle ij \rangle} $\cite{schoett2014}. Durch diese Vereinfachung muss nun nicht mehr das Matrixelement für jede Kombination aus zwei Gitterplätzen berechnet werden, sondern nur noch für direkte Nachbarn, wodurch die Matrix deutlich dünner besetzt wird. Zusammen mit dem Parameterwechsel $ U = \frac{I}{2} $ und dem Weglassen der Konstante führt dies zu einer einfacheren Form des Hamilton-Operators \cite{Rickayzen,schoett2014}:
+where $ c^\dag $,  $ c $ and $ n = c^\dag c $ denote the creation operator, annihilation operator and occupation number operator respectively. Hopping from one lattice to another therefore corresponds to annihilating a particle at the intial lattice site and creating one at the final site. The Parameter I represents the potential energy of the Coulomb repulsion. The matrix element $ T_{ij} $ represents the kinetic energy when hopping from lattice site $i$ to lattice site $j$ and would in general depends on the orbital overlap of both sites, but an aditional assumption is made for the particles to only be able to hop to neighboring lattice sites.  That means for a homogeneous lattice $ T_{ij} \approx -t\delta_{\langle ij \rangle} $\cite{schoett2014}. This assumption simplifies the matrix a lot. Also writing  $ U = \frac{I}{2} $ and omitting the constant yields the simpler form of the Hamiltonian \cite{Rickayzen,schoett2014}:
 \begin{equation}\label{Hubbard_standard}
 H = \underbrace{-t\sum_{\langle ij\rangle,\sigma}\left( c_{i\sigma}^\dag c_{j\sigma} + c_{j\sigma}^\dag c_{i\sigma}\right)}_{\substack{H_0}}  + \underbrace{U \sum_{i}n_{i\uparrow}n_{i\downarrow}}_{\substack{H_I}}
 \end{equation}
-Die Bedeutung der beiden Parameter $ t $ und $ U $ wird in \ref{fig:pic1} verdeutlicht mit $ t $ als Tunnelenergie und $ U $ als Potentielle Energie zweier Elektronen auf dem selben Gitterplatz.
-$ H_I $ ist der Abstoßungsterm des Hamilton-Operators und $ H_0 $ der Hopping-Term.
+A pictorial representation of the meaning of the parameters $ t $ and $ U $ is illustrated in \ref{fig:pic1} with $t$ being a tunneling energy and $U$ being the potential energy of two particles on the same site. 
+$ H_I $ defines the Coulomb part of the Hamiltonian and $H_0$ the hopping part.
 Der nicht interagierende Term $ H_0 $ lässt sich durch eine Fourier-Transformation in den Impulsraum diagonalisieren \cite{schoett2014}
 \begin{equation}\label{Hubbard_momentum}
 H = \sum_{\boldsymbol{k} \sigma} \epsilon_{\boldsymbol{k}} c_{\boldsymbol{k}\sigma}^\dag c_{\boldsymbol{k}\sigma}\\
@@ -49,8 +49,13 @@ T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsym
 \end{figure}
 
 
-\subsection{Vereinfachende Eigenschaften}
+%nächster Absatz etwas unsicher, schau mal drüber
+
+\subsection{Symmetries of the Hamiltonian}
+From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables to look only on the block of most interest which in our case is the half-filled case. 
+
 Wie man der Definition des Hamilton-Operators \eqref{Hubbard_standard} entnehmen kann bleiben die Teilchenzahl $ \hat{N} $, der gesamt Spin $ \hat{S}^2 $ und die Z-Komponente des Spins $ \hat{S}_z $ bei der Anwendung des Hamilton-Operators erhalten. Das führt dazu, dass die Matrix des Operators (bei geeigneter Wahl der Basis) aus Blockmatrizen für feste $ N $ entlang der Diagonalen besteht, welche wiederum den selben Aufbau mit Blöcken für feste $ S_z $ haben. Diese Eigenschaft ermöglicht es die Basis zu unterteilen, sodass man sich auf die wichtigsten Zustände beschränken kann. Es ist beispielsweise sehr unwahrscheinlich, dass alle Spins in dieselbe Richtung zeigen. Der interessanteste Block ist der mit halber Füllung und neutraler Spin-Ausrichtung, da dieser über die meisten Zustände verfügt und außerdem den Grundzustand enthält.
+
 
 Eine weitere Eigenschaft, die man sich zu Nutze machen kann ist die Translations-Invarianz. Wenn man ein Gitter mit periodischen Grenzen betrachtet, also den Elektronen am Ende des Gitters erlaubt direkt zum gegenüberliegenden Ende zu springen, sollte klar sein, dass eine Translation aller Elektronen in eine Richtung nichts an den Physikalischen Eigenschaften des Zustandes ändert, da nur die Anordnung der Elektronen für diese verantwortlich ist, der Hamilton-Operator ist unabhängig von den Positionen einzelner Elektronen. Daraus folgt, dass einige der Basiszustände äquivalent sind und sich als Translation eines anderen Zustands schreiben lassen. Der Translationsoperator $ T $ verschiebt alle Elektronen um einen Gitterplatz. Nach einem kompletten Durchgang ist man wieder am Anfangszustand angekommen $ T^N\ket{a} = \ket{a} $. Da die verschiedenen Translationen äquivalent sind, gilt auch für die Eigenwerte von $ T $: $ \lambda^N = 1 $, daraus folgt $ \lambda = e^{ik} $ mit $ k = m\frac{2\pi}{N} $ für $ m \in \mathbb{N}, m < N $. Um diese Kriterien zu erfüllen wird der Impuls-Zustand $ \ket{a(k)} $ als 
 \begin{equation}\label{momentumstate}
@@ -75,6 +80,7 @@ Hier steht $ L $ für die Anzahl der Gitterplätze und $ J_n(\omega) $ für die 
 
 
 
+
 \section{Spektralfunktion}
 Spektralfunktionen werden in der Physik genutzt um die physikalischen Eigenschaften (z.B. die Zustandsdichte) eines Materials darzustellen.\cite{Lin} Das Ergebnis hat die Form eines Spektrums, wie man es auch experimentell aufnehmen kann, daher eignet sich die Spektralfunktion gut um eine Theorie mit tatsächlichen Messwerten zu vergleichen.
 Sobald man die Greensche Funktion kennt, kann ihre Spektralfunktion wie folgt bestimmt werden
@@ -94,6 +100,9 @@ Die kombinierte Spektralfunktion aus Photoemission und Photoabsorption, welche d
 \begin{equation}\label{rho}
 \rho(\omega) = \sum_{m}\abs{\bra{\psi_m}c^\dagger_i\ket{\psi_0}}^2\delta\left( \omega -\lambda_m +\lambda_0\right) + \sum_{n}\abs{\bra{\psi_n}c_i\ket{\psi_0}}^2\delta\left( \omega +\lambda_n + \lambda_0\right)
 \end{equation}
+
+
+%denke ab hier brauchen wir nicht mehr?
 
 \section{Greensche Funktion}
 Die Greensche Funktion kann allgemein zur Lösung von Differentialgleichungen genutzt werden, indem sie für einen bestimmten linearen Differentialoperator $ L $ die Deltafunktion ergibt
