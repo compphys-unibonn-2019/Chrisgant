@@ -1,0 +1,64 @@
+\documentclass[UKenglish, xcolor=dvipsnames]{beamer}
+%\documentclass[UKenglish,aspectratio=169, xcolor=dvipsnames]{beamer}
+
+\usepackage{xcolor}
+\usepackage{pakete}
+\usepackage{appendixnumberbeamer} 
+\usepackage{physics}
+\usepackage{pgf}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{fancybox}
+
+\usetheme{Berlin}  %% Themenwahl
+\usecolortheme{dolphin}  %% or default?
+
+\setbeamertemplate{navigation symbols}{}
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+	\insertshorttitle\hfill%
+	\insertframenumber\,/\,\inserttotalframenumber}
+
+%\section[short title]{long title}
+%short title oben angezeigt, long title auf Übersichtsfolie
+
+%Berlin, Boadilla, Dresden, Ilmenau, Madrid
+
+% Verzeichnisse mit Abbildungen
+\graphicspath{{figs/}}
+
+
+\begin{document}
+
+%\section{Übersicht}
+\title{Quantum Hall Effect}
+%\subtitle{\color{black} Bachelor thesis presentation}
+\institute[]{Physikalisches Institut\\
+	Rheinische Friedrich-Wilhelms-Universität Bonn}
+\date{22 June 2019}
+\author{Christoph Gäntgen \& Lukas Köbbing}
+\maketitle
+
+
+
+\begin{frame}
+	\frametitle{Contents}
+	\tableofcontents
+\end{frame}
+
+%\frame{\tableofcontents}
+
+
+
+
+\include{part1}
+
+\include{part2}
+
+\include{summary}
+
+
+
+
+
+\end{document}

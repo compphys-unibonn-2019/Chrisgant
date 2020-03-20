@@ -1,0 +1,280 @@
+\section{Motivation}
+
+\begin{frame}
+\frametitle{Motivation}
+\begin{columns}
+	\column{5cm}
+	\begin{overprint}
+		\onslide<1>\includegraphics[height=0.8\textheight]{Klitzing-plot}
+		\onslide<2>\includegraphics[height=0.8\textheight]{Klitzing-plot-labeled}
+	\end{overprint}
+	%\includegraphics[height=0.8\textheight]{Klitzing-plot}
+	
+	\column{6cm}
+	\begin{itemize}
+		\item Experimental discovery of quantization of the Hall Effect in 1980 by Klaus von Klitzing\\\ \\
+		
+		\item Nobel Prize 1985\\\ \\
+		
+		\item Precise measurement of fine structure constant $\alpha$ possible
+	\end{itemize}
+	
+\end{columns}
+
+
+\end{frame}
+
+
+
+
+
+\section{Introduction}
+\begin{frame}
+\frametitle{Classical Hall Effect}
+
+\begin{columns}
+	\column{6cm}
+	\begin{itemize}
+		\item Current $I_x$ flowing through a sample with perpendicular magnetic field $B$ is deflected
+		\item Hall Voltage:
+		\begin{equation*}
+		V_H \propto I_x B
+		\end{equation*}
+		 %$V_H \propto I_x B$ 
+		 
+	\end{itemize}
+		 
+	\column[]{6cm}
+	\includegraphics[height=0.3\textheight]{classical-hall}
+\end{columns}
+\begin{columns}
+	\column[]{12cm}
+	\begin{itemize}
+		 \item current density $\boldsymbol{J} = \sigma \boldsymbol{E}$ \quad
+		with $\sigma = \begin{pmatrix} \sigma_{xx} & \sigma_{xy}\\ -\sigma_{xy} & \sigma_{xx}\end{pmatrix}$
+		
+		\item resistivity $\rho = \sigma^{-1} = \begin{pmatrix} \rho_{xx} & \rho_{xy}\\ -\rho_{xy} & \rho_{yy}\end{pmatrix}$
+		
+		\item classical result: $\rho_{xx} = const.$,\quad $\rho_{xy} = \dfrac{B}{ne}$
+	\end{itemize}
+\end{columns}	 
+	
+		
+	
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Landau Levels}
+
+	\begin{columns}
+	\column[]{12.5cm}
+	\begin{itemize}
+
+	\item Hamiltonian: $H = \frac{1}{2m}\left(\boldsymbol{p}+e\boldsymbol{A}\right)^2$
+	%\begin{equation*}
+	%H = \frac{1}{2m}\left(\boldsymbol{p}+e\boldsymbol{A}\right)^2
+	%\end{equation*}
+	
+	\item choose Landau gauge: $\boldsymbol{A} = xB\boldsymbol{\hat{y}}$
+	\pause
+	%\item given Hamiltonian reduces to:
+	%\begin{equation*}
+	%\boxed{H_k = \frac{1}{2m}p_x^2 + \frac{m\omega_B^2}{2}\left(x+kl_B^2\right)^2} \qquad \quad %l_B^2 = \frac{\hbar}{eB}, \quad k \in \mathbb{Z}
+	%\end{equation*}
+	%$\Rightarrow$ \alert{harmonic oscillator} with frequency $\omega_B = \dfrac{eB}{m}$
+	\end{itemize}
+	\end{columns}
+	\begin{block}{harmonic oscillator Hamiltonian}
+		\centering$H_k = \dfrac{1}{2m}p_x^2 + \dfrac{m\omega_B^2}{2}\left(x+kl_B^2\right)^2 \quad \quad \omega_B = \dfrac{eB}{m}, \quad l_B^2 = \dfrac{\hbar}{eB}$
+	\end{block}
+		
+	
+	\pause
+	%\vspace{-0.3cm}
+	\begin{columns}
+	\column{8cm}
+	\begin{itemize}
+	\item Eigenenergies quantized: $E_n = \hbar \omega_B \left(n +\frac{1}{2}\right)$\\
+	\item high \alert{degeneracy} in $k$ values:\\ \qquad 
+	\Ovalbox{$\mathcal{N} = \dfrac{eBA}{2\pi \hbar} = \dfrac{AB}{\Phi_0}$}\\ with $A=L_xL_y$ and $\Phi_0 = \frac{2\pi\hbar}{e}$\\
+	%$\rightarrow$ \alert{Landau Levels}
+	\end{itemize}
+	\column[]{4cm}
+	\centering
+	\includegraphics[height=0.4\textheight]{landau-levels}
+	
+	
+
+	\end{columns}
+\end{frame}
+
+
+\section{Integer Quantum Hall Effect}
+\begin{frame}
+\frametitle{Integer Quantum Hall Effect}
+	\begin{columns}
+		\column[]{12cm}
+		\begin{itemize}
+			\item electrons in 2d material at low temperatures and high magnetic field\\\ \\
+		\end{itemize}
+	\end{columns}
+
+	\begin{columns}
+	\column[]{6cm}
+	\includegraphics[height=0.58\textheight]{integer-qhe}
+	
+	\column[]{6cm}
+	\begin{itemize}
+		%\item electrons in 2d material\\at low temperatures and high magnetic field
+	
+		\item \alert{plateaus} in resistivity at $\rho_{xy} = \dfrac{2\pi\hbar}{e^2} \dfrac{1}{\nu}$, \quad $\nu \in \mathbb{Z}$
+		
+		\item center of these plateaus at $B = \dfrac{2\pi\hbar n}{\nu e} = \dfrac{n}{\nu}\Phi_0$\\
+		where $n = \frac{\mathcal{N}}{A}$
+		
+		\item by comparison these are the values when the first $\nu$ Landau Levels are filled completely
+
+	\end{itemize}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Where does this come from?}
+\begin{itemize}
+	\begin{columns}
+		\column[]{11cm}
+		\item compute current $\boldsymbol{I} = -e\boldsymbol{\dot{x}}$, \quad
+		with velocity $m\boldsymbol{\dot{x}} = \boldsymbol{p} + e \boldsymbol{A}$
+		\begin{equation*}
+		\Rightarrow \boldsymbol{I} = -\frac{e}{m} \sum_{filled\ states} \bra{\Psi}{-i\hbar\nabla + e\boldsymbol{A}}\ket{\Psi}
+		\end{equation*}
+		%$\Rightarrow$ $\boldsymbol{I} = -\frac{e}{m} \sum_{filled\ states} \bra{\Psi}{-i\hbar\nabla + e\boldsymbol{A}}\ket{\Psi}$ 
+		\pause
+		\vspace{-0.3cm}
+		\item components when $\nu$ Landau Levels are filled using the properties of the harmonic oscillator:\\
+		$I_x = -\frac{e}{m} \sum_{n=1}^{\nu}\sum_{k} \bra{\Psi_{n,k}}{-i\hbar \partial_x}\ket{\Psi_{n,k}} = 0$
+		$I_y = -\frac{e}{m} \sum_{n=1}^{\nu}\sum_{k} \bra{\Psi_{n,k}}{-i\hbar \partial_y + exB}\ket{\Psi_{n,k}} 
+		%= -e \nu \sum_{k} \frac{E}{B} 
+		= -\frac{e\nu EA}{\Phi_0}$
+		%$\phantom{I_y} = -e \nu \sum_{k} \frac{E}{B} = -\frac{e\nu EA}{\Phi_0}$
+		\pause
+		\item That means we have:
+		$\boldsymbol{E} = \begin{pmatrix} E\\ 0 \end{pmatrix} \quad\Rightarrow\quad \boldsymbol{J} = \begin{pmatrix}
+		0\\
+		-e\nu E /\phi_0
+		\end{pmatrix}$\\\ \\
+		i.e. $\sigma_{xx} = 0$ \ and \ $\sigma_{xy} = \dfrac{e\nu}{\Phi_0} \quad\Rightarrow\quad $\Ovalbox{$\rho_{xx} = 0$ \ and \ $\rho_{xy} = -\dfrac{2\pi\hbar}{e^2\nu}$}
+	\end{columns}
+	
+	
+	
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Edge Modes}
+\begin{columns}
+	\column[]{6cm}
+	\begin{itemize}
+		%\vspace{-0.5cm}
+		\item at the edges of the sample no closed circles possible\\
+		$\Rightarrow$ current\\\ \\
+		
+		\item particles have opposite chirality on the two sides\\\ \\\ \\
+		
+		
+
+		
+		
+	
+		
+		%\item but not only edge modes contribute to current
+		%\item $I_y = -e \int \frac{\mathrm{d}k}{2\pi} v_y(k)$\\
+		%$\phantom{I_y} = \frac{e}{2\pi l_B^2} \int \mathrm{d}x \frac{1}{eB} \frac{\partial V}{\partial x}$\\
+		%$\phantom{I_y} = \frac{e}{2\pi \hbar} \Delta \mu$
+		%\item Thus: $\sigma_{xy} = \frac{I_y}{V_H} = \frac{e^2}{2\pi \hbar}$\\
+		%expected conductivity for one filled Landau Level
+		
+	\end{itemize}
+
+	\column[]{6cm}
+	\includegraphics[width=0.9\linewidth]{edge-modes}
+	
+\end{columns}
+\pause
+\begin{columns}
+	\column[]{6cm}
+	\begin{itemize}
+ 		\item group velocity:
+ 		\begin{equation*}
+ 		v_y = -\dfrac{1}{eB} \dfrac{\partial V}{\partial x}
+ 		\end{equation*}
+ 	\end{itemize}
+ 
+ 
+	\column[]{6cm}
+	%\includegraphics[width=0.9\linewidth]{edge-modes}
+	
+	\includegraphics[width=0.9\linewidth]{potential0}
+	\ \\
+	%\includegraphics[height=0.3\textheight]{potential}\\
+	
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential}
+\begin{figure}
+	\includegraphics[width=1.\linewidth]{potential1}
+	
+	Potential with edges ($ I=0 $)
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential}
+	\includegraphics[width=1.\linewidth]{potential2}
+	\begin{center}
+		Introduce potential difference $ \Delta \mu $ ($ I \neq 0 $)
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential}
+	\includegraphics[width=1.\linewidth]{potential3}
+	\begin{center}
+		Not only edge modes contribute to current
+		
+		\begin{equation*}
+		%\hspace{-0.5cm}
+		I_y = -e \int \dfrac{\mathrm{d}k}{2\pi} v_y(k) = \dfrac{e}{2\pi \hbar} \Delta \mu
+		\pause \quad\Rightarrow\quad \boxed{\sigma_{xy} = \frac{I_y}{V_H} = \frac{e^2}{2\pi \hbar}}
+		\end{equation*}
+		%without term
+		% = \dfrac{e}{2\pi l_B^2} \int \mathrm{d}x \frac{1}{eB} \dfrac{\partial V}{\partial x}
+
+		%$I_y = -e \int \dfrac{\mathrm{d}k}{2\pi} v_y(k) = \dfrac{e}{2\pi l_B^2} \int \mathrm{d}x \frac{1}{eB} \dfrac{\partial V}{\partial x} = \dfrac{e}{2\pi \hbar} \Delta \mu$\\
+		%Thus: $\sigma_{xy} = \frac{I_y}{V_H} = \frac{e^2}{2\pi \hbar}$
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential}
+	\includegraphics[width=1.\linewidth]{potential4}
+	\begin{center}
+		Real potential with impurities
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential}
+	\includegraphics[width=1.\linewidth]{potential5}
+	\begin{center}
+		Multiple Landau-levels
+	\end{center}
+\end{frame}

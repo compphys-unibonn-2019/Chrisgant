@@ -1,0 +1,253 @@
+%impurities ------------------------------------------------------------------------------------------------------------------
+%\subsection*{Disorder}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{figs/QHE-vs-classic}
+		%\caption{}
+		\label{fig:integer-qhe}
+	\end{figure}
+	\pause \Ovalbox{So far, explained the QHE only for completely filled Landau Levels!}
+\end{frame}
+
+\begin{frame}
+\begin{columns}
+	\column[]{0.45\linewidth}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{figs/Landau1}
+		%\caption{}
+		\label{fig:landau1}
+	\end{figure}
+	\centering\ovalbox{$E_n=\hbar\omega_B(n+\frac{1}{2})$}
+	\pause
+	\column[]{0.1\linewidth}
+	\centering
+	%add impurities
+	$\Rightarrow$
+	\column[]{0.45\linewidth}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{figs/Landau2}
+		%\caption{}
+		\label{fig:landau2}
+	\end{figure}
+	\phantom{\centering\ovalbox{$E_n=\hbar\omega_B(n+\frac{1}{2})$}}
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Impurities}
+\begin{figure}
+	\centering
+	\includegraphics[height=0.8\textheight]{figs/impurity_potential}
+	%\caption{}
+	\label{fig:impuritypotential}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Robustness: Disorder}
+now: final Landau Level only partially filled, i.e. $B \not{=} n\Phi_0/\nu$\\\ \\
+\begin{columns}
+	\column[]{7cm}
+	\begin{itemize}
+		\item Density of states broadened\\
+		\item localized states do \textbf{not} contribute to the current\\
+		\item $\rho_{xy}$ stays the same even if $\nu$-th Landau Level is not filled completely
+		
+
+		$\Rightarrow$ plateau structure
+	\end{itemize}
+	\column[]{5cm}
+	\includegraphics[height=0.5\textheight]{states-broadened}
+\end{columns}
+
+
+
+\end{frame}
+
+\begin{frame}
+	\begin{onlyenv}
+		\begin{columns}
+			\column[]{0.5\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics<1>[width=1.1\linewidth]{figs/x1}
+				\includegraphics<2>[width=1.1\linewidth]{figs/x2}
+				\includegraphics<3>[width=1.1\linewidth]{figs/x3}
+				\includegraphics<4>[width=1.1\linewidth]{figs/x4}
+				\includegraphics<5>[width=1.1\linewidth]{figs/x5}
+				\includegraphics<6>[width=1.1\linewidth]{figs/x6}
+			\end{figure}
+			\centering
+			%add impurities
+			\column[]{0.5\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics<1>[width=1.1\linewidth]{figs/y1}
+				\includegraphics<2>[width=1.1\linewidth]{figs/y2}
+				\includegraphics<3>[width=1.1\linewidth]{figs/y3}
+				\includegraphics<4>[width=1.1\linewidth]{figs/y4}
+				\includegraphics<5>[width=1.1\linewidth]{figs/y5}
+				\includegraphics<6>[width=1.1\linewidth]{figs/y6}
+			\end{figure}
+		\end{columns}
+	\end{onlyenv}
+\end{frame}
+
+%Topology ---------------------------------------------------------------------------------------------------------------------
+%\subsection*{Topology}
+\begin{frame}
+\frametitle{Topology}
+\begin{itemize}
+	\begin{columns}
+		\column[]{0.08\linewidth}
+		\column[]{0.75\linewidth}
+		\item consider Hall system as an annulus \\
+		\item hole $\Rightarrow$ additional flux $\Phi$
+		\column[]{0.25\linewidth}
+		\includegraphics[width=\linewidth]{figs/annulus}
+	\end{columns}
+	\item extended states: $\psi(r,\phi) = \psi(r,\phi+2\pi)$ \\ $\Rightarrow \Phi = n\Phi_0$
+	\item at least two extended states (inner and outer ring)
+	\item slowly increasing $\Phi$ leads to spectral flow from inner to outer ring
+	\item same result $\Rightarrow$ topology of probe does not matter
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+	\item annulus $\rightarrow$ torus $\rightarrow$ continuous rectangle
+	\item magnetic translation operators: $T(\boldsymbol{d}) = \exp(-i\boldsymbol{d}\cdot \boldsymbol{p}/\hbar) = 		\exp(-i\boldsymbol{d}\cdot(i\nabla +e\boldsymbol{A}/\hbar))$
+	\item continuity: $T_x \Psi(x,y) = \Psi(x,y)$ and $T_y \Psi(x,y) = \Psi(x,y)$
+	\item with Landau gauge $A_x = 0$ and $A_y = Bx$:\\
+	$T_x \Psi(x,y) = \Psi(x+L_x, y) = \Psi(x,y)$\\
+	$T_y \Psi(x,y) = \exp(-ieBL_yx/\hbar)\Psi(x, y+L_y) = \Psi(x,y)$
+	\item demanding that $T_y T_x = \exp(-ieBL_xL_y/\hbar)T_x T_y = T_x T_y$ \\
+	$\Rightarrow$ $BL_x L_y = \dfrac{2\pi\hbar}{e} n \:\text{ with } n \in \mathbb{Z}\qquad$ \\
+	$\Rightarrow$ "Dirac quantisation condition"
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Topology continued}
+\begin{columns}
+	\column[]{8cm}
+	\begin{itemize}
+		\item perturbing the system by adding two fluxes:
+		$A_x = \frac{\Phi_x}{L_x}$ \quad and \quad $A_y = \frac{\Phi_y}{L_y} +Bx$
+		\item Hamiltonian changes by:
+		$\Delta H = - \sum_{i=x,y} \dfrac{J_i \Phi_i}{L_i}$
+		\item Kubo formula: $ \sigma_{xy} = i\hbar \sum_{n\neq0} \frac{\bra{0}J_y\ket{n}\bra{n}J_x\ket{0}-\bra{0}J_x\ket{n}\bra{n}J_y\ket{0}}{\left( E_n -E_0\right)^2}$
+		\item using perturbation theory and the Kubo formula to get:
+		$\sigma_{xy} = i\hbar \left[\frac{\partial}{\partial \Phi_y} \braket{\Psi_0}{\frac{\partial \Psi_0}{\partial \Phi_x}} - \frac{\partial}{\partial \Phi_x} \braket{\Psi_0}{\frac{\partial \Psi_0}{\partial \Phi_y}}\right]$
+	\end{itemize}
+	\column[]{4cm}
+	\includegraphics[height=0.4\textheight]{torus-flux}
+	
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Topology final}
+\begin{itemize}
+	\item Hamiltonian depends only on $\Phi_i \mod \Phi_0$\\
+	$\rightarrow$ continuous rectangle $\rightarrow$ another torus\\parameterized with \quad $\Theta_i = \frac{2\pi\Phi_i}{\Phi_0} \qquad \Theta_i \in [0,2\pi)$
+	\item Berry connection: \quad $\mathcal{A}_i(\Phi) = -i\bra{\Psi_0}\frac{\partial}{\partial \Theta_i} \ket{\Psi_0}$
+	\item field strength: \quad $\mathcal{F}_{xy} = \frac{\partial \mathcal{A}_x}{\partial \Theta_y} - \frac{\partial \mathcal{A}_y}{\partial \Theta_x} =
+	 -i\left[\frac{\partial}{\partial \Theta_y} \braket{\Psi_0}{\frac{\partial \Psi_0}{\partial \Theta_x}} - \frac{\partial}{\partial \Theta_x} \braket{\Psi_0}{\frac{\partial \Psi_0}{\partial \Theta_y}}\right]$
+	 \item $\Rightarrow\sigma_{xy} = -\frac{e^2}{\hbar} \mathcal{F}_{xy}$
+	 \item average over all fluxes $\rightarrow$ integrate over torus:\\
+	 $\sigma_{xy} = -\frac{e^2}{\hbar} \int \frac{\mathop{}\!\mathrm{d}^2 \Theta}{(2\pi)^2} \mathcal{F}_{xy}$\\ \pause
+	 \begin{block}{first Chern number}
+		\centering$C = \frac{1}{2\pi} \int \mathop{}\!\mathrm{d}^2 \Theta \mathcal{F}_{xy}$ \qquad $C \in \mathbb{Z}$
+	 \end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{figs/sphere_hd}
+		%\caption{}
+		\label{fig:sphere_hd}
+	\end{figure}
+	\begin{block}{Integer QHE}
+		\centering$\sigma_{xy} = -\dfrac{e^2}{2\pi\hbar} C$
+	\end{block}
+\end{frame}
+
+
+\section{Fractional Quantum Hall Effect}
+\begin{frame}
+\frametitle{Fractional Quantum Hall Effect}
+\begin{columns}
+	\column[]{12cm}
+	\ \\So far: $\nu \in \mathbb{Z} \Rightarrow$ Integer QHE\\
+	\Ovalbox{But indeed, $\nu$ can take several rational numbers, e.g. $\nu = \frac{1}{3}, \frac{1}{5}, \frac{3}{7}, \frac{4}{3}, \frac{7}{5}, \dots$}
+	\centering
+	\includegraphics[height=0.72\textheight]{fractional-qhe}
+	
+\end{columns}
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Fractional QHE}
+For the integer QHE we ignored interactions between electrons\\\ \\
+
+$V_{Coulomb} = \dfrac{e^2}{4\pi\epsilon_0\abs{\boldsymbol{r}_i - \boldsymbol{r}_j}}$\\\ \\
+\begin{columns}
+	\column[]{6.5cm}
+	\begin{itemize}
+		\item The interactions will lift the degeneracy
+		\item To explain the plateau structure there have to be gaps in the DOS at the given fractions!
+	\end{itemize}
+	
+	
+	\column[]{5.5cm}
+	\centering
+	\includegraphics[height=0.5\textheight]{states-fractional-gap}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Fractional QHE}
+\begin{itemize}
+	\item $\nu = \frac{1}{m} \quad \text{with } m$ an odd integer: explained by Laughlin States\\
+	\begin{itemize}
+		\item ground state degenerate
+		\item quasi-holes with charge $e/m$
+	\end{itemize}
+	\item ideas extended to higher numerators\\\ \\
+	\item for $\nu = \frac{5}{2}, \frac{7}{2}$: \quad non-abelian QH states
+	\begin{itemize}
+		\item lowest Landau Levels completely filled for spin up and spin down
+		\item followed by spin-polarized Landau Level with half-filling
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Applications}
+\begin{frame}
+\frametitle{Applications}
+\begin{itemize}
+	\item von Klitzing-constant: \quad $R_K = \dfrac{h}{e^2} = \SI{25812,807557 \pm 0.000018}{\ohm}$\\ $\Rightarrow$ define $\SI{1}{\ohm}$\\\ \\
+	
+	\item fine structure constant: \quad $\alpha = \dfrac{1}{4\pi \epsilon_0}\dfrac{e^2}{\hbar c} = \dfrac{c\mu_0}{R_K}$
+\end{itemize}
+	
+\end{frame}
