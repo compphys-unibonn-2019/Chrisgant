@@ -1,3 +1,6 @@
+source("Basis.R")
+source("Hamiltonian.R")
+
 N <- 10
 beta <- 0.1
 
@@ -11,9 +14,9 @@ HubbardInit <- function(L, Nd = L/2, Nu = L/2){
 deltaH <- function(h, S, t=1, U=3, continuous=TRUE){	#! unsure				H|Psi> = E|Psi'> => E=|Psi'|
 	L <- length(S)/2
 	dH_pot <- -U * S[(h[1] - 1 + L) %% (2 * L ) + 1] + U * S[(h[2] - 1 + L) %% (2 * L ) + 1]
-	neighbors_i <- getNeighbors(L=L, i=h[1], continuous=continuous)
-	neighbors_f <- getNeighbors(L=L, i=h[2], continuous=continuous)
-	dH_kin <- -t * (2 * sum(S[neighbors_i[!is.na(neighbors_i)]]) - 2 * (sum(S[neighbors_f[!is.na(neighbors_f)]]) - 1))
+	#neighbors_i <- getNeighbors(L=L, i=h[1], continuous=continuous)
+	#neighbors_f <- getNeighbors(L=L, i=h[2], continuous=continuous)
+	dH_kin <- -t# * (2 * sum(S[neighbors_i[!is.na(neighbors_i)]]) - 2 * (sum(S[neighbors_f[!is.na(neighbors_f)]]) - 1))
 	dH <- dH_pot + dH_kin
 	return(dH)
 	#? Energy expectation value?
@@ -50,7 +53,7 @@ HubbardSweep <- function(S, t=1, U=3, beta=1,continuous=TRUE){
 	L <- dim(S)/2
 	AR <- 0
 	rand <- runif(n=2*L)
-	for(x in 1:(2*L)){					#? maybe random order?  x in sample(1:(2*L), 2*L)
+	for(x in sample(1:(2*L), 2*L)){					#? maybe random order?  x in sample(1:(2*L), 2*L)
 		y <- getNeighbors(L,x,continuous=continuous)[2]
 		if(!is.na(y) & (S[x]+S[y] == 1)){
 			i <- x
@@ -82,13 +85,58 @@ HubbardPlot <- function(S){
 }
 
 Metropolis <- function(N=100, L=6, Nd = L/2, Nu = L/2, beta=1, t=1, U=3,continuous=TRUE){
-	S <- HubbardInit(L=L, Nd=Nd, Nu=Nu)
-	E <- numeric()
-	for(i in 1:N){
-		#print(S)
-		S <- HubbardSweep(S=S, beta=beta, t=t, U=U, continuous=continuous)$S
+	Basis <- GenerateBasis(N=N, L=L, Nd=Nd, Nu=Nu, beta=beta, t=t, U=U, continuous=continuous)
+	for(i in 1:nrow(Basis)){
 		E[i] <- H(S)
 	}
 	print(sum(E)/N)
 	return(invisible(S))
+}
+
+GenerateBasis <- function(N=100, restarts=1, L=6, Nd = L/2, Nu = L/2, beta=1,max=2000, t=1, U=3,continuous=TRUE){
+	S <- HubbardInit(L=L, Nd=Nd, Nu=Nu)
+	Basis <- matrix(data=S,nrow=1,ncol=2*L)
+	size <- 0
+	for(r in 1:restarts){
+		if(r > 1)S <- HubbardInit(L=L, Nd=Nd, Nu=Nu)
+		#if(any(apply(Basis, 1, function(x, want) isTRUE(all.equal(x, want)), c(S))) == FALSE){
+			Basis <- rbind(Basis,t(S))
+			size <- size + 1
+		#}
+		for(i in 2:N){
+			#print(S)
+			S <- HubbardSweep(S=S, beta=beta, t=t, U=U, continuous=continuous)$S
+			#if(any(apply(Basis, 1, function(x, want) isTRUE(all.equal(x, want)), c(S))) == FALSE){
+				Basis <- rbind(Basis,t(S))
+				size <- size + 1
+			#}
+			if(size == max) break
+		}
+	}
+	
+	#print(sum(E)/N)
+	return(Basis)
+}
+
+H_Sub <- function(Basis,t=1,U=3) {
+	L <- ncol(Basis)
+	n <- nrow(Basis)
+	if(is.null(n)){
+		if(length(Basis) > 0){
+			n <- 1
+			b <- matrix(data = Basis, nrow = 1)
+		}else {
+			return(NULL)
+		}
+	}
+	if(n == 0) return(NULL)
+	H <- matrix(data = 0, nrow = n, ncol = n)
+	for (i in 1:n) {
+		for (j in 1:i) {
+			x <- H1(Basis[i,],Basis[j,],t,U,TRUE)
+			H[i,j] = x
+			H[j,i] = x
+		}
+	}
+	return(H)
 }
