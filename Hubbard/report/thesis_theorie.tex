@@ -14,19 +14,18 @@ H = \underbrace{-t\sum_{\langle ij\rangle,\sigma}\left( c_{i\sigma}^\dag c_{j\si
 \end{equation}
 A pictorial representation of the meaning of the parameters $ t $ and $ U $ is illustrated in \ref{fig:pic1} with $t$ being a tunneling energy and $U$ being the potential energy of two particles on the same site. 
 $ H_I $ defines the Coulomb part of the Hamiltonian and $H_0$ the hopping part.
-Der nicht interagierende Term $ H_0 $ lässt sich durch eine Fourier-Transformation in den Impulsraum diagonalisieren \cite{schoett2014}
+The hopping part of the Hamiltonian $H_0$ can be diagonalized by a Fouriertransformation to momentum space \cite{schoett2014}
 \begin{equation}\label{Hubbard_momentum}
 H = \sum_{\boldsymbol{k} \sigma} \epsilon_{\boldsymbol{k}} c_{\boldsymbol{k}\sigma}^\dag c_{\boldsymbol{k}\sigma}\\
 \end{equation}
-$ \epsilon_{\boldsymbol{k}} $ ist die Dispersion der Elektronen. Die Erzeugungs- und Vernichtungsoperatoren wirken nun nicht mehr auf zwei verschiedene Gitter Plätze sondern das Elektron mit dem Impuls $ \boldsymbol{k} $. Sie können einfach als Wannier-Funktion
+$ \epsilon_{\boldsymbol{k}} $ denotes the dispersion relation of the electrons. The creation and annihilation are not acting on different lattice sites anymore, but on electrons with momentum $ \boldsymbol{k} $. They can be calculated as Wannierfunctions of the local operators
 \begin{equation}\label{Wannier}
 \psi_{\boldsymbol{k}} \left( \boldsymbol{x}\right) = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} \phi(\boldsymbol{x}-\boldsymbol{R}_j)
 \end{equation} 
-der lokalen Operatoren berechnet werden
 \begin{equation}\label{c_momentum}
 c_{\boldsymbol{k}\sigma} = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}, \qquad c_{\boldsymbol{k}\sigma}^\dagger = \frac{1}{\sqrt{N}}\sum_{j} e^{-i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}^\dagger
 \end{equation}\cite{Hubbard}  
-Durch Einsetzen dieser in \eqref{Hubbard_momentum} erhält man für $ T_{ij} $ aus \eqref{Hubbard_original}
+Inserting this in \eqref{Hubbard_momentum} gives along with \eqref{Hubbard_original} the following expression for $ T_{ij} $ 
 \begin{equation}\label{T}
 T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsymbol{k}\left( \boldsymbol{R}_j - \boldsymbol{R}_l\right) }
 \end{equation}
@@ -44,18 +43,19 @@ T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsym
 		\caption{\cite{FigHubbardModel1}}
 		\label{fig:pic1}
 	\end{subfigure}
-\caption[Veranschaulichung des Hubbard-Modells]{(a): Hier sieht man ein zweidimensionales quadratisches Gitter, die orangen Punkte symbolisieren Atome mit jeweils einem freien Orbital und die Gitterlinien zeigen die erlaubten Sprünge der Elektronen (hier als Pfeile dargestellt)\\(b): Diese Abbildung zeigt das Potential eines eindimensionalen Atom-Gitters, der Parameter t steht für die kinetische Energie eines Elektrons (rote und blaue Punkte) beim Sprung zu Nachbaratom, der Parameter U steht für die Potentielle Energie zweier Elektronen (up \& down) die sich gegenseitig abstoßen.}
+\caption[Illustration of the Hubbard model]{(a): Twodimensional square lattice, orange points indicating atoms with one free orbital each and lattice lines indicating the permitted hops of the electrons. \\(b): Potential of a onedimensional lattice; here t denotes the kinetic energy of an electron when hopping to a neighboring lattice site (red and blue points) and U denotes the potential energy of two repulsing atoms of opposite spin.}
 \label{HubbardFigs}
 \end{figure}
 
 
-%nächster Absatz etwas unsicher, schau mal drüber
+%nächster Absatz etwas unsicher, schau mal drüber, habe auch einen Teil weggelassen, denke das führt für dieses Pojekt zu weit, ist %nicht wirklich wichtig für das was wir machen
 
 \subsection{Symmetries of the Hamiltonian}
-From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables to look only on the block of most interest which in our case is the half-filled case. 
+From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables to look only on the block of most interest which in our case is the half-filled case. \\
 
 Wie man der Definition des Hamilton-Operators \eqref{Hubbard_standard} entnehmen kann bleiben die Teilchenzahl $ \hat{N} $, der gesamt Spin $ \hat{S}^2 $ und die Z-Komponente des Spins $ \hat{S}_z $ bei der Anwendung des Hamilton-Operators erhalten. Das führt dazu, dass die Matrix des Operators (bei geeigneter Wahl der Basis) aus Blockmatrizen für feste $ N $ entlang der Diagonalen besteht, welche wiederum den selben Aufbau mit Blöcken für feste $ S_z $ haben. Diese Eigenschaft ermöglicht es die Basis zu unterteilen, sodass man sich auf die wichtigsten Zustände beschränken kann. Es ist beispielsweise sehr unwahrscheinlich, dass alle Spins in dieselbe Richtung zeigen. Der interessanteste Block ist der mit halber Füllung und neutraler Spin-Ausrichtung, da dieser über die meisten Zustände verfügt und außerdem den Grundzustand enthält.
 
+Another symmetry is translational invariance. When considering a lattice with periodic boundary conditions it is obvious that translating all electrons by the same lattice vector, the observable quantities will not change, since the Hamilton operator does not depend on the absolute position of an electron. This implies that some states in the basis become the same when acting with a translation operator and are therefore equivalent.\\
 
 Eine weitere Eigenschaft, die man sich zu Nutze machen kann ist die Translations-Invarianz. Wenn man ein Gitter mit periodischen Grenzen betrachtet, also den Elektronen am Ende des Gitters erlaubt direkt zum gegenüberliegenden Ende zu springen, sollte klar sein, dass eine Translation aller Elektronen in eine Richtung nichts an den Physikalischen Eigenschaften des Zustandes ändert, da nur die Anordnung der Elektronen für diese verantwortlich ist, der Hamilton-Operator ist unabhängig von den Positionen einzelner Elektronen. Daraus folgt, dass einige der Basiszustände äquivalent sind und sich als Translation eines anderen Zustands schreiben lassen. Der Translationsoperator $ T $ verschiebt alle Elektronen um einen Gitterplatz. Nach einem kompletten Durchgang ist man wieder am Anfangszustand angekommen $ T^N\ket{a} = \ket{a} $. Da die verschiedenen Translationen äquivalent sind, gilt auch für die Eigenwerte von $ T $: $ \lambda^N = 1 $, daraus folgt $ \lambda = e^{ik} $ mit $ k = m\frac{2\pi}{N} $ für $ m \in \mathbb{N}, m < N $. Um diese Kriterien zu erfüllen wird der Impuls-Zustand $ \ket{a(k)} $ als 
 \begin{equation}\label{momentumstate}
