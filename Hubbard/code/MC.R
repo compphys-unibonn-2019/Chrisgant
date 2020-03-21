@@ -29,7 +29,7 @@ H <- function(S, t=1, U=3, continuous=TRUE){
 	for(i in which(S==0)){
 		n <- n + sum(S[getNeighbors(L=L,i=i,continuous=continuous)])
 	}
-	H_kin <- -t * n
+	H_kin <- -t #* n
 	H <- H_pot + H_kin
 	return(H)
 }
@@ -86,11 +86,25 @@ HubbardPlot <- function(S){
 
 Metropolis <- function(N=100, L=6, Nd = L/2, Nu = L/2, beta=1, t=1, U=3,continuous=TRUE){
 	Basis <- GenerateBasis(N=N, L=L, Nd=Nd, Nu=Nu, beta=beta, t=t, U=U, continuous=continuous)
+	E <- numeric()
 	for(i in 1:nrow(Basis)){
-		E[i] <- H(S)
+		E[i] <- H(Basis[i,])
 	}
-	print(sum(E)/N)
-	return(invisible(S))
+	#print(sum(E)/N)
+	return(sum(E)/N)
+}
+
+Metropolis2 <- function(N=10000, restarts=1, L=6, Nd = L/2, Nu = L/2, beta=1, t=1, U=3,continuous=TRUE){
+	S <- HubbardInit(L=L, Nd=Nd, Nu=Nu)
+	E <- numeric()
+	for(r in 0:(restarts-1)){
+			for(i in 1:N){
+			S <- HubbardSweep(S=S, beta=beta, t=t, U=U, continuous=continuous)$S
+			E[r*N+i] <- H(S)
+		}
+	}
+	#print(sum(E)/N)
+	return(sum(E)/(N*restarts))
 }
 
 GenerateBasis <- function(N=100, restarts=1, L=6, Nd = L/2, Nu = L/2, beta=1,max=2000, t=1, U=3,continuous=TRUE){
