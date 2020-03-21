@@ -5,7 +5,7 @@ expE <- function(beta=1, U=3) {
 }
 
 plot_beta <- function(U=3){
-	beta <- list(0,0.1,1,10)
+	beta <- list(0,0.1,0.5,1,10)
 	plot(x=beta,y=lapply(beta, expE, U=U))
 }
 
