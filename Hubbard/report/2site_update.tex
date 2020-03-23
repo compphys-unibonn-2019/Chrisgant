@@ -1,0 +1,95 @@
+
+\begin{document}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{states} \qquad \qquad 
+		\caption{Different states in the Hilbert space in two different notations}
+		\label{fig1}
+	\end{figure}
+\section{Explicit solution of the 2-site model}
+For the $N=2$ half-filled Hubbard model with periodic boundary the exact calculation of correlation functions is doable "by hand" because the Hilbert space contains only six states ($\ket{\phi_J}$, $J=1,...,6$), thus the trace can be performed explicitly. Figure \ref{fig1} shows the states in operator-notation and a shorthand notation. One sees that e.g. for $\ket{\phi_1}$ there is a sign ambiguity in defining the state
+\begin{align*}
+	\ket{\phi_1^a} &= c^{\dagger}_{1\uparrow}c^{\dagger}_{0\uparrow}\ket{0} \\
+	\ket{\phi_1^b} &= c^{\dagger}_{0\uparrow}c^{\dagger}_{1\uparrow}\ket{0} = -\ket{\phi_1^a} 
+\end{align*}
+where the creation operator indices are for lattice site 0 and 1 and spin up and down. Due to this ambiguity we choose the convention that lattice sites increase from right to left and for same lattice sites spin up are on the right to spin down operators.\\ Writing down the Hubbard Hamiltonian for the 2 site model in the basis of these six states gives a $6x6$ matrix\footnote{note that the problem reduces to a 4x4 and two 1x1 matrices due to the conservation of total spin.}
+\begin{equation*}
+	H=
+\begin{pmatrix}
+	0 & 0 & 0&0&0&0\\
+	0 & U & -t&-t&0&0\\
+	0 & -t & 0&0&-t&0\\
+	0 & -t & 0&0&-t&0\\
+	0 & 0 & -t&-t&U&0\\
+	0 & 0 & 0&0&0&0 
+\end{pmatrix}
+\end{equation*}
+The goal is to calculate expectation values of an operator $A$ in the canonical ensemble
+\begin{equation}
+	<A> = \frac{\text{Tr}(\text{e}^{-\beta H}A)}{\text{Tr}(\text{e}^{-\beta H})} = \frac{\sum_{n}^{}\text{e}^{-\beta E_n}\braket{\tilde{\phi_n}|A|\tilde{\phi_n}}}{\sum_{n}^{}\text{e}^{-\beta E_n}}\label{expvalue}
+\end{equation}
+where $E_n$ are the eigenenergies and $\ket{\tilde{\phi_n}}$ are the eigenstates of $H$. Diagonalizing $H$ gives the 4x4 matrix 
+\begin{equation*}
+H_D=
+\begin{pmatrix}
+0 & 0 & 0&0\\
+0 & U & 0&0\\
+0 & 0 & E_{-}&0\\
+0 & 0 & 0&E_{+}
+\end{pmatrix}
+\end{equation*}
+where $E_{\pm}=\frac{1}{2}(U\pm\sqrt{16t^2+U^2})$, along with the set of eigenstates.\footnote{$\ket{\phi_1}$ and $\ket{\phi_6}$ are also eigenstates of H}
+\begin{align*}
+	\ket{\tilde{\phi_{0}}}&=-\ket{\phi_3}+\ket{\phi_4}\\
+	\ket{\tilde{\phi_{U}}}&=-\ket{\phi_2} - \ket{\phi_5}	\\
+	\ket{\tilde{\phi_{-}}}&=\ket{\phi_2}+\frac{E_+}{2t}(\ket{\phi_3}+\ket{\phi_4}+\ket{\phi_5})	\\
+	\ket{\tilde{\phi_{+}}}&=\ket{\phi_2}+\frac{E_-}{2t}(\ket{\phi_3}+\ket{\phi_4}+\ket{\phi_5})	
+\end{align*}
+With this one can calculate for instance the energy expectation value 
+\begin{equation}
+	<E>  = \frac{\sum_{n}^{}\text{e}^{-\beta E_n}E_n}{\sum_{n}^{}\text{e}^{-\beta E_n}}
+\end{equation}
+or the propagator according to equation \ref{expvalue}.
+\begin{equation}
+	<c^{\dagger}_{i\sigma}c_{j\sigma^{\prime}}>= \frac{\sum_{n}^{}\text{e}^{-\beta E_n}\braket{\tilde{\phi_n}|c^{\dagger}_{i\sigma}c_{j\sigma^{\prime}}|\tilde{\phi_n}}}{\sum_{n}^{}\text{e}^{-\beta E_n}}
+\end{equation}
+
+\subsection*{Extension to the grandcanonical ensemble}
+One can also imagine a generalisation of the model where in addition to electron hops one can create or annihilate two electrons of opposite spin at an empty lattice site. The total particle number is not conserved anymore, and the creation or annihilation is regulated by the chemical potential $\mu$. Two states are added to our Hilbert space (call them $\ket{\phi_0}$ and $\ket{\phi_7}$), the completely occupied lattice (4 electrons) and the completely empty lattice. The new Hamiltonian is then
+\begin{equation*}
+H^{gc}=
+\begin{pmatrix}
+ 0 &\mu&0 &0&\mu&0\\
+\mu & U & -t&-t&0&\mu\\
+ 0& -t & 0&0&-t&0\\
+0& -t & 0&0&-t&0\\
+\mu & 0 & -t&-t&U&\mu\\
+ 0 &\mu&0 &0&\mu&0\\
+\end{pmatrix}
+\end{equation*}
+Note that this is in the basis ($\ket{\phi_0}$, $\ket{\phi_2}$, $\ket{\phi_3}$, $\ket{\phi_4}$, $\ket{\phi_5}$, $\ket{\phi_7}$).\\ Diagonalizing gives:
+\begin{equation*}
+H_D^{gc}=
+\begin{pmatrix}
+0 & 0&0 &0&0&0\\
+0 & 0 & 0&0&0&0\\
+0& 0 & 0&0&0&0\\
+0& 0 & 0&U&0&0\\
+0 & 0 & 0&0&E^{gc}_{-}&0\\
+0 &0&0 &0&0&E^{gc}_{+}
+\end{pmatrix}
+\end{equation*}
+with $E^{gc}_{\pm}=\frac{1}{2}(U\pm\sqrt{16\mu^2+16t^2+U^2})$
+in the eigenbasis:
+\begin{align*}
+\ket{\bar{\phi^1_{0}}}&=-\ket{\phi_0}+\ket{\phi_7}\\
+\ket{\bar{\phi^2_{0}}}&=\frac{t}{\mu}\ket{\phi_0}+\ket{\phi_4}\\
+\ket{\bar{\phi^3_{0}}}&=\frac{t}{\mu}\ket{\phi_0}+\ket{\phi_3}\\
+\ket{\bar{\phi_{U}}}&=-\ket{\phi_2} + \ket{\phi_5}	\\
+\ket{\bar{\phi_{-}}}&=\ket{\phi_0}+\ket{\phi_7}-\frac{2(\mu^2+t^2)}{\mu E_-^{gc}}(\ket{\phi_2}+\ket{\phi_5})-\frac{t}{\mu}(\ket{\phi_3}+\ket{\phi_4})	\\
+\ket{\bar{\phi_{+}}}&=	\ket{\phi_0}+\ket{\phi_7}-\frac{2(\mu^2+t^2)}{\mu E_+^{gc}}(\ket{\phi_2}+\ket{\phi_5})-\frac{t}{\mu}(\ket{\phi_3}+\ket{\phi_4})
+\end{align*}
+Now correlation functions in the grand canonical ensemble can be calculated, for instance the energy expectation value:
+\begin{equation}
+	<E>=  \frac{\text{Tr}(\text{e}^{-\beta(H-\mu \hat{N}) }H)}{\text{Tr}(\text{e}^{-\beta (H-\mu \hat{N})})} = \frac{\sum_{n}^{}E_n\text{e}^{-\beta (E_n-\mu\braket{\bar{\phi_n}|\hat{N}|\bar{\phi_n}})}}{\sum_{n}^{}\text{e}^{-\beta (E_n-\mu\braket{\bar{\phi_n}|\hat{N}|\bar{\phi_n}})}}\label{expvaluegc}
+\end{equation}
