@@ -36,11 +36,15 @@ Prop <- function(i=1,j=2){
 }
 
 plot_beta <- function(U=3){
-	beta <- list(0,0.1,0.5,1,10)
-	plot(x=beta,y=lapply(beta, expE, U=U))
+	beta <- list(0,0.1,0.5,1,5,10)
+	data <- lapply(beta, expE, U=U)
+	plot(x=beta,y=data)
+	return(invisible(matrix(data=c(beta,data),ncol=2)))
 }
 
 plot_U <- function(beta=1){
 	U <- list(0,0.5,1,2,4,8,16)
-	plot(x=U,y=lapply(U, expE, beta=beta))
+	data <- lapply(U, expE, beta=beta)
+	plot(x=U,y=data)
+	return(invisible(matrix(data=c(U,data),ncol=2)))
 }
