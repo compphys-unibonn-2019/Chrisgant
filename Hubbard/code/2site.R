@@ -35,16 +35,30 @@ Prop <- function(i=1,j=2){
 	return(m)
 }
 
-plot_beta <- function(U=3){
+plot_beta_E <- function(U=3){
 	beta <- list(0,0.1,0.5,1,5,10)
 	data <- lapply(beta, expE, U=U)
 	plot(x=beta,y=data)
 	return(invisible(matrix(data=c(beta,data),ncol=2)))
 }
 
-plot_U <- function(beta=1){
+plot_U_E <- function(beta=1){
 	U <- list(0,0.5,1,2,4,8,16)
 	data <- lapply(U, expE, beta=beta)
+	plot(x=U,y=data)
+	return(invisible(matrix(data=c(U,data),ncol=2)))
+}
+
+plot_beta_Prop <- function(U=3){
+	beta <- list(0,0.1,0.5,1,5,10)
+	data <- lapply(beta, expProp, U=U)
+	plot(x=beta,y=data)
+	return(invisible(matrix(data=c(beta,data),ncol=2)))
+}
+
+plot_U_Prop <- function(beta=1){
+	U <- list(0,0.5,1,2,4,8,12,16)
+	data <- lapply(U, expProp, beta=beta)
 	plot(x=U,y=data)
 	return(invisible(matrix(data=c(U,data),ncol=2)))
 }
