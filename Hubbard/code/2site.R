@@ -35,8 +35,7 @@ Prop <- function(i=1,j=2){
 	return(m)
 }
 
-plot_beta_E <- function(U=3){
-	beta <- list(0,0.1,0.5,1,5,10)
+plot_beta_E <- function(U=3, beta=list(0,0.1,0.5,1,5,10)){
 	data <- lapply(beta, expE, U=U)
 	plot(x=beta,y=data)
 	return(invisible(matrix(data=c(beta,data),ncol=2)))
