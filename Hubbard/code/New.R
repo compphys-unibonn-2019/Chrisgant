@@ -1,9 +1,43 @@
+H2 <- function(U=2){
+    B <- matrix(data=c(0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,1,1),nrow=4)
+    H <- diag(x=0, nrow=16)
+    for(i in 1:16){
+        si <- B[,i]
+        nui <- sum(si[c(1,2)])
+        ndi <- sum(si[c(3,4)])
+        for(j in 1:16){
+            sj <- B[,j]
+            if(i==j){
+                H[i,j] <- -U/2*((si[1]-si[3])^2+(si[2]-si[4])^2)
+            }else{
+                nuj <- sum(sj[c(1,2)])
+                ndj <- sum(sj[c(3,4)])
+                if(nui == 1 & nuj == 1 & ndi == ndj & si[3]==sj[3]) H[i,j] <- -1
+                if(ndi == 1 & ndj == 1 & nui == nuj & si[1]==sj[1]) H[i,j] <- -1
+            }
+            
+        }
+    }
+    return(H)
+}
+
 M_1 <- function(N_t = 4, phi_t = rep(0, N_t)){
     M <- diag(x=1, nrow=N_t)
     expPhi <- -exp(phi_t)
     #print(expPhi)
     M[row(M) == (col(M) + 1)] <- expPhi[1:(N_t-1)]
     M[1,N_t] <- - expPhi[N_t]
+    return(M)
+}
+
+M <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1){  #! not ready for continuous boundary
+    M <- diag(x=1, nrow=N_t*N)
+    t <- t/N_t
+    expPhi <- exp(phi_t)
+    M[row(M) == (col(M) + 1) & col(M) %% N_t != 0]   <- -expPhi[1:(N*N_t-N)]
+    M[row(M) == (col(M) - N_t + 1) & col(M) %% N_t == 0]   <- +expPhi[(N*N_t-N+1):(N_t*N)]
+    #M[row(M) -1 == (col(M)) %% (2*N_t) & col(M) %% N_t == 0]   <- -t
+    M[row(M) -1 == (col(M) - N_t) %% (2*N_t) & col(M) %% N_t != 0]   <- t
     return(M)
 }
 
@@ -17,8 +51,25 @@ Z_1 <- function(N = 50000, N_t = 24, U = 2, beta = 2){
     return(Z)
 }
 
+Z <- function(N = 50000, N_t = 24, L = 2, U = 2, beta = 2){
+    sum <- 0
+    for(i in 1:N){
+        phi <- samplePhi(N_t=N_t, N=L, U=U, beta=beta)
+        x <- det(M(N_t=N_t, N=L, phi_t=phi) %*% M(N_t=N_t, N=L, phi_t=-phi))
+        sum <- sum + x
+        
+    }
+    Z <- sum/N
+    return(Z)
+}
+
 Z_1e <- function(U = 2, beta = 2){
     Z <- 2*(1+exp(beta*U/2))
+    return(Z)
+}
+
+Z_2e <- function(U = 2, beta = 2, t=1){
+    Z <- 3+3*exp(beta*U)+2*exp(beta*U/2)*(4*cosh(beta*t)+cosh(beta*sqrt(U^2/4+4*t^2)))
     return(Z)
 }
 
@@ -55,8 +106,8 @@ C_1e <- function(U=2, beta = 2 ,tau=0){
     return(C)
 }
 
-plot_C_1_tau <- function(beta=2, U=2, N=50000){
-	N_t <- 24
+plot_C_1_Nt <- function(beta=2, U=2, N=50000,N_t=24){
+	#N_t <- 48
     tau <- seq(0,beta-beta/N_t, length.out= N_t)
     data <- C_1(tau=tau, U=U, beta=beta, N_t=N_t)
     pdf(file="plot.pdf")
@@ -67,9 +118,10 @@ plot_C_1_tau <- function(beta=2, U=2, N=50000){
 	return(invisible(matrix(data=c(tau,data),ncol=2)))
 }
 
-samplePhi <- function(N_t = 64, U = 5, beta = 3){
+samplePhi <- function(N_t = 64, U = 5, beta = 3,N=1){
     U <- U*beta/N_t
-    phi <- rnorm(n=N_t,mean=0,sd=sqrt(U))
+    phi <- rnorm(n=N_t*N,mean=0,sd=sqrt(U))         #U -> sqrt(2)*U
+    #phi <- matrix(data=phi,ncol=N)
     return(phi)
 }
 
