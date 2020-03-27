@@ -30,35 +30,48 @@ M_1 <- function(N_t = 4, phi_t = rep(0, N_t)){
     return(M)
 }
 
-M <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1){  #! not ready for continuous boundary
+M <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1,beta=2){  #! not ready for continuous boundary
     M <- diag(x=1, nrow=N_t*N)
-    t <- t/N_t
-    expPhi <- exp(phi_t)
+    t <- t*beta/N_t
+    expPhi <- exp(-phi_t)
     M[row(M) == (col(M) + 1) & col(M) %% N_t != 0]   <- -expPhi[1:(N*N_t-N)]
     M[row(M) == (col(M) - N_t + 1) & col(M) %% N_t == 0]   <- +expPhi[(N*N_t-N+1):(N_t*N)]
-    #M[row(M) -1 == (col(M)) %% (2*N_t) & col(M) %% N_t == 0]   <- -t
-    M[row(M) -1 == (col(M) - N_t) %% (2*N_t) & col(M) %% N_t != 0]   <- t
+    M[row(M) -1 == (col(M)) %% (2*N_t) & col(M) %% N_t == 0]   <- -t
+    M[row(M) -1 == (col(M) - N_t) %% (2*N_t) & col(M) %% N_t != 0]   <- +t
     return(M)
 }
 
 Z_1 <- function(N = 50000, N_t = 24, U = 2, beta = 2){
     sum <- 0
+    MM <- rep(0,N)
+    n <- 0
     for(i in 1:N){
         phi <- samplePhi(N_t=N_t, U=U, beta=beta)
-        sum <- sum + det(M_1(N_t=N_t, phi_t=phi) %*% M_1(N_t=N_t, phi_t=-phi))
+        x <- det(M_1(N_t=N_t, phi_t=phi) %*% M_1(N_t=N_t, phi_t=-phi))
+        MM[i] <- x
+        sum <- sum + x
+        if(x < 0) n <- n +1
     }
+    #print(n)
+    #print(max(MM))
+    #hist(MM[which(MM < 100)], breaks=100)
     Z <- sum/N
     return(Z)
 }
 
-Z <- function(N = 50000, N_t = 24, L = 2, U = 2, beta = 2){
+Z <- function(N = 50000, N_t = 4, L = 2, U = 2, beta = 2){
     sum <- 0
+    MM <- rep(0,N)
+    n <- 0
     for(i in 1:N){
         phi <- samplePhi(N_t=N_t, N=L, U=U, beta=beta)
-        x <- det(M(N_t=N_t, N=L, phi_t=phi) %*% M(N_t=N_t, N=L, phi_t=-phi))
+        x <- det(M(N_t=N_t, N=L, phi_t=phi,beta=beta) %*% M(N_t=N_t, N=L, phi_t=-phi,beta=beta))
+        MM[i] <- x
         sum <- sum + x
-        
+        if(x < 0) n <- n +1
     }
+    #print(n)
+    hist(MM[which(MM < 3000)], breaks=80)
     Z <- sum/N
     return(Z)
 }
@@ -120,7 +133,7 @@ plot_C_1_Nt <- function(beta=2, U=2, N=50000,N_t=24){
 
 samplePhi <- function(N_t = 64, U = 5, beta = 3,N=1){
     U <- U*beta/N_t
-    phi <- rnorm(n=N_t*N,mean=0,sd=sqrt(U))         #U -> sqrt(2)*U
+    phi <- rnorm(n=N_t*N,mean=0,sd=sqrt(U))
     #phi <- matrix(data=phi,ncol=N)
     return(phi)
 }
