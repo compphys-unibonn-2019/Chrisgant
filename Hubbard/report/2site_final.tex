@@ -1,0 +1,145 @@
+\noindent From now on we will use the following Hamiltonian 
+\begin{equation}
+	H = -t \sum_{<i,j>, \sigma} c_{i\sigma}^\dag c_{j\sigma} - \frac{U}{2} \sum_{i}(n_{i\uparrow} - n_{i\downarrow})^2 
+	\label{Hnew}
+\end{equation}
+This Hamiltonian yields equivalent physics for it still favors singly occupied states even though the Coulomb repulsion term is acting differently. Still the first sum is over all spins and nearest neighbor sites and the second sum is over all lattice sites.
+\newline
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{ccc}
+		
+		\hline  
+		Enumeration & State & Number of eletrons \\
+		\hline
+		$\ket{1}$ & $\ket{0}$ & 0\\
+		$\ket{2}$ & $\ket{\uparrow}$ & 1\\
+		$\ket{3}$ & $\ket{\downarrow}$ & 1\\
+		$\ket{4}$ & $\ket{\uparrow\downarrow}$ & 2\\
+	\end{tabular}
+	\caption{Enumeration of Fock states in the onesited model}
+	\label{fock1}
+\end{table}
+\section{Explicit calculations in the 1- and 2-site model}\label{analytic}
+Now we want to calculate the partition function, the energy expectation value and the full correlation function for the one- and twosited model, where the Fock space is small enough to be handled this way. We are considering the canonical ensemble since the total particle number is conserved.\\
+The partition function $Z$ is then defined as 
+\begin{equation}
+Z := \text{Tr}(\text{e}^{-\beta H}) = \sum_{n}^{}\text{e}^{-\beta E_n} \label{partition}
+\end{equation}
+where $E_n$ are the Eigenenenergies of the Hamiltonian. The energy expectation value follows immediately to be
+\begin{equation}
+\braket{E} = \frac{1}{Z}\text{Tr} (H\text{e}^{-\beta H}) =\frac{1}{Z} \sum_{n}^{} E_n\text{e}^{-\beta E_n} \label{energy}
+\end{equation}
+Another interesting quantity is the correlation function or correlation matrix $C_{\tau}$ between two states $\ket{a}(\tau)$ and $\ket{b}(0)$
+\begin{equation}
+	\braket{C_{\alpha\beta}(\tau)}= \frac{1}{Z}\sum_{i}^{}\braket{i|a_{\alpha}(\tau)a^{\dagger}_{\beta}(0)|i}	\label{correlator}
+\end{equation}
+where $\tau$ denotes a possible time parameter of the system and the sum is over all basis states.
+\subsection{1-site model}
+In the case of the onesided model we have no hopping term and the Fock space contains the the eight states $\ket{i}, i \in {1,...,8}$ that are shown in table \ref{fock1}.\\
+
+The Hamiltonian can be written in matrix form in this basis and then reads
+\begin{equation*}
+\braket{i|H|j}=
+\begin{pmatrix}
+0 & 0 & 0&0\\
+0 & -\frac{U}{2} & 0&0\\
+0 & 0 & -\frac{U}{2}&0\\
+0 & 0 & 0&0
+\end{pmatrix}
+\end{equation*}
+For there is no hopping possible on one site the matrix is already diagonal and the eigenvalue can be read off. The resulting partition function becomes
+\begin{equation}
+Z_{1}= 2 (1+\text{e}^{\beta U/2})
+	\label{partition1}
+\end{equation}
+For the energy expectation value one finds in the same way
+\begin{equation}
+	\braket{E_1}= -U\text{e}^{\beta U/2}
+	\label{energy1}
+\end{equation}
+The correlator is slightly more complicated. To simplify expression \ref{correlator} for this special case we insert a complete set of states and consider the time-evolution
+\begin{equation}
+	a_{\alpha}(\tau)= \text{e}^{-H\tau} a_{\alpha}(0)\text{e}^{H\tau}
+\end{equation}
+to  obtain (see also \cite{luu})
+\begin{equation}
+\braket{C_{\alpha\beta}(\tau)}= \frac{1}{Z}\sum_{i,j}^{4}\braket{i|a_{\alpha}|j}\braket{j|a^{\dagger}_{\beta}|i}\text{e}^{-(E_i-E_j)\tau - \beta E_i}
+	\label{correl_expand}
+\end{equation}
+This has the advantage that we only need to find the actions of $a_{\alpha}$ in matrix form, which are \footnote{note that the a minus sign appears because of the anticommutation of the operators and the convention that spin up operators are to the right of spin down operators}
+\begin{align}
+	a_{i,\uparrow} =
+	 \begin{pmatrix}
+	0 & 1 & 0&0\\
+	0 & 0 & 0&0\\
+	0 & 0 & 0&-1\\
+	0 & 0 & 0&0
+	\end{pmatrix} \hspace{0.5cm} \text{and} \hspace{0.5cm}	
+	a_{i,\downarrow} =
+	\begin{pmatrix}
+	0 & 0 & 1&0\\
+	0 & 0 & 0&1\\
+	0 & 0 & 0&0\\
+	0 & 0 & 0&0
+	\end{pmatrix}
+\end{align}
+
+With this at hand we find the correlation matrix to be
+\begin{equation}
+\braket{C_{\sigma\sigma^{\prime}}(\tau)}= 
+\begin{pmatrix}
+C_{\uparrow\uparrow} & C_{\uparrow\downarrow} \\
+C_{\downarrow\uparrow} & C_{\downarrow\downarrow}
+\end{pmatrix}
+=\frac{1}{2\cosh(U\beta/4)}
+\begin{pmatrix}
+\cosh(\frac{U}{2}(\tau-\beta/2)) & 0\\
+0 & \cosh(\frac{U}{2}(\tau-\beta/2))
+\end{pmatrix}
+	\label{correlator1}
+\end{equation}
+\begin{table}
+	\centering	
+	\begin{tabular}{ccc}
+		
+		\hline  
+		Enumeration & State & Number of eletrons \\
+		\hline
+		$\ket{1}$ & $\ket{0,0}$ & 0\\
+		$\ket{2}$ & $\ket{0,\uparrow}$ & 1\\
+		$\ket{3}$ & $\ket{0,\downarrow}$ & 1\\
+		$\ket{4}$ & $\ket{0,\uparrow\downarrow}$ & 2\\
+		$\ket{5}$ & $\ket{\uparrow,0}$ & 1\\
+		$\ket{6}$ & $\ket{\downarrow,0}$ & 1\\
+		$\ket{7}$ & $\ket{\uparrow\downarrow,0}$ & 2\\
+		$\ket{8}$ & $\ket{\uparrow,\uparrow}$ & 2\\
+		$\ket{9}$ & $\ket{\downarrow, \uparrow}$ & 2\\
+		$\ket{10}$ & $\ket{\uparrow, \downarrow}$ & 2\\
+		$\ket{11}$ & $\ket{\downarrow, \downarrow}$ & 2\\
+		$\ket{12}$ & $\ket{\uparrow\downarrow, \uparrow}$ & 3\\
+		$\ket{13}$ & $\ket{\uparrow\downarrow, \downarrow}$ & 3\\
+		$\ket{14}$ & $\ket{\uparrow,\uparrow\downarrow}$ & 3\\
+		$\ket{15}$ & $\ket{\downarrow, \uparrow\downarrow}$ & 3\\
+		$\ket{16}$ & $\ket{\uparrow\downarrow,\uparrow\downarrow}$ & 4\\
+	\end{tabular}
+	\caption{Building the basis of the Fock space of the twosited model}
+	\label{fock2}
+\end{table}
+\subsection{2-site model}
+Now we turn to the twosited model, where things become more difficult because the hopping term in the Hamiltonian is nonvanishing. The Fock basis contains 16 states now and can be enumerated according to table \ref{fock2}. The Hamiltonian is again written in matrix form, but now must be diagonalized in order to obtain the eigenenergies. The complete $H$ matrix as well as the eigenvalues and the eigenbasis are in Appendix A. \\
+Knowing the eigenenergies we can immediately calculate the partition function and the energy expectation value
+\begin{equation}
+	Z_2=\sum_{i=1}^{16}\text{e}^{-\beta E_i}= 3(1+\text{e}^{\beta U})+2\text{e}^{\beta U/2}(4\cosh(\beta t)+\cosh(\beta\sqrt{4t^2+U^2/4}))
+\end{equation}
+\begin{align}
+	\braket{E_2}&= \sum_{i=1}^{16}E_i\text{e}^{-\beta E_i} = -3U\text{e}^{\beta U}-\text{e}^{\beta U/2}(4U\cosh(\beta t)+8t\sinh(\beta t)\\&-\text{e}^{\beta U/2}(U\cosh(\beta\sqrt{4t^2+U^2/4})+\sqrt{16t^2+U^2}\sinh(\beta\sqrt{4t^2+U^2/4}))\nonumber
+\end{align}
+After expressing the annihilation operators again in a matrix form (see Appendix A) we can find the full correlator $C_{xy\sigma\sigma^{\prime}}$ ($x$ and $y$ denote the lattice sites). There are only four nonvanishing components namely
+\begin{align*}
+	C_{11\uparrow\uparrow}&= \frac{1}{Z_2}\biggl(\text{e}^{-U\tau}+2\text{e}^{-(t+U/2)\tau}+2\text{e}^{\beta U}\text{e}^{t\tau}\cosh(\tau U/2)+\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+\text{e}^{\beta t}+\text{e}^{(\beta+2\tau)\sqrt{4t^2+U^2/4}})\biggr)\\
+	C_{11\downarrow\downarrow}&= \frac{1}{Z_2}\biggl(\text{e}^{-U\tau}+2\text{e}^{-\tau U/2}\cosh(t\tau)+\text{e}^{\beta U}\text{e}^{(t+U/2)\tau}+2\text{e}^{\beta U/2}(\text{e}^{t(\beta-2\tau)}+\text{e}^{t(\beta-\tau) }\cosh(\tau\sqrt{4t^2+U^2/4}))\biggr)\\
+	C_{22\uparrow\uparrow}&= \frac{1}{Z_2}\biggl(1+\text{e}^{\beta U}(\text{e}^{-U\tau}+2\text{e}^{(t+U/2)\tau})+\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+2\text{e}^{t(\beta+\tau) }\cosh(\tau\sqrt{4t^2+U^2/4}))\biggr)\\
+	C_{22\downarrow\downarrow}&= \frac{1}{Z_2}\biggl(1+\text{e}^{-U\tau}+2\text{e}^{\beta U+(t+U/2)\tau}+2\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+\cosh(\tau(\sqrt{4t^2+U^2/4}+t)+\beta t))\biggr)
+\end{align*}

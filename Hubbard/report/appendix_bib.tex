@@ -1,0 +1,105 @@
+\documentclass[nenglish]{scrartcl} 
+\KOMAoptions{fontsize=12pt,paper=a4}       
+\KOMAoptions{DIV=11}                      
+\usepackage[utf8]{inputenc}                
+\usepackage[T1]{fontenc}                   
+\usepackage{babel}   
+\usepackage{amsmath} 
+\setcounter{MaxMatrixCols}{20}                    
+\usepackage[autostyle=true]{csquotes}     
+
+\begin{thebibliography}{9}
+	
+	\bibitem{luu}
+	Thomas Luu, November 2017
+	\textit{Fermions and Computers}
+	
+	\bibitem{lieb}
+	E. Lieb, F. Wu
+	\textit{The one-dimensional Hubbard model: a reminiscience}
+	
+	\bibitem{tasaki} 
+	H. Tasaki
+	\textit{The Hubbard model - an introduction and selected rigorous results}
+	
+	\bibitem{jafari}
+	Seyed A. Jafari 
+	\textit{Introduction to Hubbard Model and Exact Diagonalization}
+	
+	\bibitem{gabrielsson}
+	Anders F. Gabrielsson
+	\textit{Quantum Monte Carlo Simulations of
+		the Half-filled Hubbard Model}
+	
+	\bibitem{luu}
+	Thomas Luu, November 2017
+	\textit{Fermions and Computers}
+	
+
+\end{thebibliography}
+\clearpage
+\section{Appendix A - Analytical diagonalization of the 2-site model}
+The matrix for the Hubbard Hamiltonian in the basis of the 16 states $\ket{i}, i\in {1,...,16}$ shown in section \ref{analytic} reads\footnote{note that due to particle conservation the matrix splits up into smaller blocks of same particle number}
+\begin{equation*}
+	H=
+\begin{pmatrix}
+	0&0&0&0&0&0&0&0&0&0&0&0&0&0&0&0\\
+	0&-U/2&0&0&-t&0&0&0&0&0&0&0&0&0&0&0\\
+	0&0&-U/2&0&0&-t&0&0&0&0&0&0&0&0&0&0\\
+	0&0&0&0&0&0&0&0&-t&-t&0&0&0&0&0&0\\
+	0&-t&0&0&-U/2&0&0&0&0&0&0&0&0&0&0&0\\
+	0&0&-t&0&0&-U/2&0&0&0&0&0&0&0&0&0&0\\
+	0&0&0&0&0&0&0&0&-t&-t&0&0&0&0&0&0\\
+	0&0&0&0&0&0&0&0&-U&0&0&0&0&0&0&0\\
+	0&0&0&-t&0&0&-t&0&-U&0&0&0&0&0&0&0\\
+	0&0&0&-t&0&0&-t&0&0&-U&0&0&0&0&0&0\\
+	0&0&0&0&0&0&0&0&0&0&-U&0&0&0&0&0\\
+	0&0&0&0&0&0&0&0&0&0&0&-U/2&0&-t&0&0\\
+	0&0&0&0&0&0&0&0&0&0&0&0&-U/2&0&-t&0\\
+	0&0&0&0&0&0&0&0&0&0&0&-t&0&-U/2&0&0\\
+	0&0&0&0&0&0&0&0&0&0&0&0&-t&0&-U/2&0\\
+	0&0&0&0&0&0&0&0&0&0&0&0&0&0&0&0
+\end{pmatrix}
+\end{equation*}
+Diagonalization gives 
+\begin{align*}
+	H_D= \text{diag}\biggl(0,0,0,-U,-U,-U, -\frac{U}{2}+t, -\frac{U}{2}+t,-\frac{U}{2}+t,-\frac{U}{2}+t,\\,-\frac{U}{2}-t,-\frac{U}{2}-t,-\frac{U}{2}-t,-\frac{U}{2}-t,-\frac{U}{2}-\sqrt{\frac{U^2}{4}+4t^2},-\frac{U}{2}+\sqrt{\frac{U^2}{4}+4t^2}\biggr)
+\end{align*}
+with the set of eigenstates $\ket{n_i}$:
+\begin{align*}
+	\ket{n_1}&= \ket{1}\hspace{2cm}\\
+	\ket{n_2}&=-\frac{1}{\sqrt{2}} \ket{4} + \frac{1}{\sqrt{2}}\ket{7} \hspace{2cm}\\
+	\ket{n_3}&=-\frac{1}{\sqrt{2}} \ket{14} + \frac{1}{\sqrt{2}}\ket{7}\\
+	\ket{n_4}&=-\frac{1}{\sqrt{2}} \ket{12} + \frac{1}{\sqrt{2}}\ket{13}\\ \hspace{2cm}
+	\ket{n_5}&=\ket{11} \\
+	\ket{n_6}&=-\frac{1}{\sqrt{2}} \ket{9} + \frac{1}{\sqrt{2}}\ket{10}\\
+	\ket{n_7}&= \ket{8} \\
+	\ket{n_8}&=-\frac{1}{2} \ket{12} - \frac{1}{{2}}\ket{13}  + \frac{1}{{2}}\ket{14}  + \frac{1}{{2}}\ket{15}\\
+	\ket{n_9}&=-\frac{1}{\sqrt{2}} \ket{3} + \frac{1}{\sqrt{2}}\ket{6}\\
+	\ket{n_{10}}&=-\frac{1}{\sqrt{2}} \ket{2} + \frac{1}{\sqrt{2}}\ket{5}\\
+	\ket{n_{11}}&=\frac{1}{\sqrt{2}} \ket{3} + \frac{1}{\sqrt{2}}\ket{6}\\
+	\ket{n_{12}}&=\frac{1}{\sqrt{2}} \ket{2} + \frac{1}{\sqrt{2}}\ket{5}\\
+	\ket{n_{13}}&=\frac{1}{2} \ket{12} + \frac{1}{{2}}\ket{13}  + \frac{1}{{2}}\ket{14}  + \frac{1}{{2}}\ket{15}\\
+	\ket{n_{14}}&= -\frac{2t}{D_-} \ket{4} -\frac{2t}{D_-} \ket{7} +\frac{2t(\frac{U}{2}+\sqrt{\frac{U^2}{4}+4t^2})}{D_-} \ket{9} +\frac{2t(\frac{U}{2}+\sqrt{\frac{U^2}{4}+4t^2})}{D_-} \ket{10}\\
+	\ket{n_{15}}&= +\frac{2t}{D_+} \ket{4} +\frac{2t}{D_+} \ket{7} +\frac{2t(-\frac{U}{2}+\sqrt{\frac{U^2}{4}+4t^2})}{D_+} \ket{9} +\frac{2t(-\frac{U}{2}+\sqrt{\frac{U^2}{4}+4t^2})}{D_+} \ket{10}\\
+	\ket{n_{16}}&=\ket{16}
+\end{align*}
+where 
+\begin{equation*}
+	D_{\pm}= \biggl(\frac{U}{2}\pm\sqrt{\frac{U^2}{4}+4t^2}\biggr)\sqrt{\biggl|\frac{64t^2}{\frac{U^2}{4}+4t^2}\biggr|^2+2}
+\end{equation*}
+\clearpage
+\noindent Finally the nonvanishing components of the annihilation operators $(a^{x}_\sigma)_{i,j}$ in matrix form are
+\begin{equation*}
+	(a^1_\downarrow)_{6,1}=(a^1_\downarrow)_{7,5}=(a^1_\downarrow)_{9,2}=(a^1_\downarrow)_{11,3}=(a^1_\downarrow)_{12,8}=(a^1_\downarrow)_{13,10}=(a^1_\downarrow)_{15,4}=(a^1_\downarrow)_{16,14}=1 
+\end{equation*}
+\begin{equation*}
+	(a^1_\uparrow)_{5,1}=-(a^1_\uparrow)_{7,6}=(a^1_\uparrow)_{8,2}=(a^1_\uparrow)_{10,3}=(a^1_\uparrow)_{61}=-(a^1_\uparrow)_{12,9}=-(a^1_\uparrow)_{13,11}=-(a^1_\uparrow)_{16,15}=1
+\end{equation*}
+\begin{equation*}
+	(a^2_\downarrow)_{3,1}=(a^2_\downarrow)_{4,2}=(a^2_\downarrow)_{10,5}=(a^2_\downarrow)_{11,6}=(a^2_\downarrow)_{13,7}=(a^2_\downarrow)_{14,8}=(a^2_\downarrow)_{15,9}=(a^2_\downarrow)_{16,12}=1
+\end{equation*}
+\begin{equation*}
+	(a^2_\uparrow)_{6,1} =(a^2_\uparrow)_{2,1}=-(a^2_\uparrow)_{4,3}=(a^2_\uparrow)_{8,5}=(a^2_\uparrow)_{9,6}=(a^2_\uparrow)_{12,7}=-(a^2_\uparrow)_{14,10}=-(a^2_\uparrow)_{15,11}=-(a^2_\uparrow)_{16,13}=1
+\end{equation*}
+
