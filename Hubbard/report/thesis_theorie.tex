@@ -1,20 +1,19 @@
-%==============================================================================
-\chapter{Theoretische Einführung}
-\label{sec:theo}
+
 %==============================================================================
 
-\section{Hubbard-Modell}
-The Hubbard model, named after british Physicist John Hubbard, is a model mostly used in Condensed Matter Physics. It describes matter as a lattice on which sites particles e.g. electrons can hop to another lattice site, while in case of fermions they must, of course, respect the Pauli principle. Furthermore a Coulomb repulsion is assumed between electrons at the same lattice site. Figure \ref{fig:pic2} shows the lattice for a 2D material schematically. The onsite Coulomb repulsion is a feature that distinguishes the Hubbard model from most other models and enables it for instance to describe the transition from a metal to an insulator in certain materials. The Hamilton operator of the Hubbard model reads \cite{Hubbard}:
+\section{Theoretical background}
+\subsection{The model}
+The Hubbard model, named after british Physicist John Hubbard, is a model mostly used in Condensed Matter Physics. It describes matter as a lattice on which sites particles e.g. electrons can hop to another lattice site, while in case of fermions they must, of course, respect the Pauli principle. Furthermore a Coulomb repulsion is assumed between electrons at the same lattice site. Figure \ref{fig:pic2} shows the lattice for a 2D material schematically. The onsite Coulomb repulsion is a feature that distinguishes the Hubbard model from most other models and enables it for instance to describe the transition from a metal to an insulator in certain materials. The Hamilton operator of the Hubbard model reads
 \begin{equation}\label{Hubbard_original}
 H = \sum_{i,j}\sum_{\sigma}T_{ij} c_{i\sigma}^\dag c_{j\sigma} + \frac{I}{2} \sum_{i}n_{i\uparrow}n_{i\downarrow} - \frac{I}{2}Nn^2
 \end{equation}
-where $ c^\dag $,  $ c $ and $ n = c^\dag c $ denote the creation operator, annihilation operator and occupation number operator respectively. Hopping from one lattice to another therefore corresponds to annihilating a particle at the intial lattice site and creating one at the final site. The Parameter I represents the potential energy of the Coulomb repulsion. The matrix element $ T_{ij} $ represents the kinetic energy when hopping from lattice site $i$ to lattice site $j$ and would in general depends on the orbital overlap of both sites, but an aditional assumption is made for the particles to only be able to hop to neighboring lattice sites.  That means for a homogeneous lattice $ T_{ij} \approx -t\delta_{\langle ij \rangle} $\cite{schoett2014}. This assumption simplifies the matrix a lot. Also writing  $ U = \frac{I}{2} $ and omitting the constant yields the simpler form of the Hamiltonian \cite{Rickayzen,schoett2014}:
+where $ c^\dag $,  $ c $ and $ n = c^\dag c $ denote the creation operator, annihilation operator and occupation number operator respectively. Hopping from one lattice to another therefore corresponds to annihilating a particle at the intial lattice site and creating one at the final site. The Parameter I represents the potential energy of the Coulomb repulsion. The matrix element $ T_{ij} $ represents the kinetic energy when hopping from lattice site $i$ to lattice site $j$ and would in general depends on the orbital overlap of both sites, but an aditional assumption is made for the particles to only be able to hop to neighboring lattice sites.  That means for a homogeneous lattice $ T_{ij} \approx -t\delta_{\langle ij \rangle} $. This assumption simplifies the matrix a lot. Also writing  $ U = \frac{I}{2} $ and omitting the constant yields the simpler form of the Hamiltonian
 \begin{equation}\label{Hubbard_standard}
 H = \underbrace{-t\sum_{\langle ij\rangle,\sigma}\left( c_{i\sigma}^\dag c_{j\sigma} + c_{j\sigma}^\dag c_{i\sigma}\right)}_{\substack{H_0}}  + \underbrace{U \sum_{i}n_{i\uparrow}n_{i\downarrow}}_{\substack{H_I}}
 \end{equation}
 A pictorial representation of the meaning of the parameters $ t $ and $ U $ is illustrated in \ref{fig:pic1} with $t$ being a tunneling energy and $U$ being the potential energy of two particles on the same site. 
 $ H_I $ defines the Coulomb part of the Hamiltonian and $H_0$ the hopping part.
-The hopping part of the Hamiltonian $H_0$ can be diagonalized by a Fouriertransformation to momentum space \cite{schoett2014}
+The hopping part of the Hamiltonian $H_0$ can be diagonalized by a Fouriertransformation to momentum space 
 \begin{equation}\label{Hubbard_momentum}
 H = \sum_{\boldsymbol{k} \sigma} \epsilon_{\boldsymbol{k}} c_{\boldsymbol{k}\sigma}^\dag c_{\boldsymbol{k}\sigma}\\
 \end{equation}
@@ -24,7 +23,7 @@ $ \epsilon_{\boldsymbol{k}} $ denotes the dispersion relation of the electrons. 
 \end{equation} 
 \begin{equation}\label{c_momentum}
 c_{\boldsymbol{k}\sigma} = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}, \qquad c_{\boldsymbol{k}\sigma}^\dagger = \frac{1}{\sqrt{N}}\sum_{j} e^{-i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}^\dagger
-\end{equation}\cite{Hubbard}  
+\end{equation}  
 Inserting this in \eqref{Hubbard_momentum} gives along with \eqref{Hubbard_original} the following expression for $ T_{ij} $ 
 \begin{equation}\label{T}
 T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsymbol{k}\left( \boldsymbol{R}_j - \boldsymbol{R}_l\right) }
@@ -33,14 +32,14 @@ T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsym
 \begin{figure}[h!]
 	\begin{subfigure}{.5 \textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{../figs/graphics/pic2}
-		\caption{\cite{FigHubbardModel2}}
+		\includegraphics[width=0.8\linewidth]{pic2}
+		\caption{\cite{Hubbard}}
 		\label{fig:pic2}
 	\end{subfigure}
 	\begin{subfigure}{.5 \textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{../figs/graphics/pic1}
-		\caption{\cite{FigHubbardModel1}}
+		\includegraphics[width=0.8\linewidth]{pic1}
+		\caption{\cite{Hubbard2}}
 		\label{fig:pic1}
 	\end{subfigure}
 \caption[Illustration of the Hubbard model]{(a): Twodimensional square lattice, orange points indicating atoms with one free orbital each and lattice lines indicating the permitted hops of the electrons. \\(b): Potential of a onedimensional lattice; here t denotes the kinetic energy of an electron when hopping to a neighboring lattice site (red and blue points) and U denotes the potential energy of two repulsing atoms of opposite spin.}
@@ -55,7 +54,9 @@ From the above defintion \eqref{Hubbard_standard} it becomes clear that the tota
 
 
 Another symmetry is translational invariance. When considering a lattice with periodic boundary conditions it is obvious that translating all electrons by the same lattice vector, the observable quantities will not change, since the Hamilton operator does not depend on the absolute position of an electron. This implies that some states in the basis become the same when acting with a translation operator and are therefore equivalent.\\
-After translating over a whole lattice line  (N lattice site translations) one comes back to a position that is equivalent to the original position i.e. $ T^N\ket{a} = \ket{a} $. For the eigenvalues $\lambda$ of $T$ one then has:  $ \lambda^N = 1 $, which implies $ \lambda = e^{ik} $ where $ k = m\frac{2\pi}{N} $ for $ m \in \mathbb{N}, m < N $. A momentum state $ \ket{a(k)} $ satisyfying this is \begin{equation}\label{momentumstate}
+After translating over a whole lattice line  (N lattice site translations) one comes back to a position that is equivalent to the original position i.e. $ T^N\ket{a} = \ket{a} $. For the eigenvalues $\lambda$ of $T$ one then has:  $ \lambda^N = 1 $, which implies $ \lambda = e^{ik} $ where $ k = m\frac{2\pi}{N} $ for $ m \in \mathbb{N}, m < N $. A momentum state $ \ket{a(k)} $ satisyfying this is 
+
+\begin{equation}\label{momentumstate}
 \ket{a(k)} = \frac{1}{\sqrt{N_a}}\sum_{r=0}^{N-1}e^{-ikr}T^r\ket{a}
 \end{equation}
 Here $ T\ket{a(k)} = e^{ik}\ket{a(k)}$ holds, with $ \ket{a} $ being a state in the local basis and $ N_a $ a normalization factor. The number of translations to get to the original configuration might be $R_a < N$. This defines $R_a$ to be the smalles possible solution of  $ T^{R_a}\ket{a} = \ket{a} $. This limits the possible $k$ and changes the normalization factor:
@@ -72,42 +73,6 @@ N_a = \frac{N^2}{R_a}.
 Finding the ground state energy is done in the next section for the 2 site model by explicit diagonalization. But this procedure becomes too time- and storage expensive for bigger lattices. For infinitely large lattices, which comes close to the case of a real material, the solution will converge to the following analytical solution
 \begin{equation}\label{analytisch}
 E_0(U)=-4L\int_{0}^{\infty}\frac{J_0(\omega)J_1(\omega)}{\omega\left( 1+\exp\left( \omega\frac{U}{2}\right) \right) }d\omega
-\end{equation}\cite{Monien}
+\end{equation}\cite{lieb}
 Here $ L $ denotes the number of lattice sites and $ J_n(\omega) $ is the Besselfunction of first kind.
-
-
-
-
-
-%\begin{equation}\label{TAB}
-%G(\boldsymbol{r}_1,\tau_1,\boldsymbol{r}_2,\tau_2) = \left\langle T\,A(\boldsymbol{r}_1,\tau_1)B(\boldsymbol{r}_2,\tau_2)\right\rangle 
-%\end{equation}
-%Hier ist $ T $ der Zeitordnungsoperator und $ A $ und $ B $ sind beliebige Quantenmechanische Operatoren. Der Einfachheit halber wird in dieser Arbeit von hier an die Greensche Funktion für das Photoemmissions- und -absorptionsspektrum bei $ T = \SI{0}{\kelvin} $ behandelt, da man in der Regel an dieser interessiert ist. Für diese Greensche Funktion wählt man $ c_i(\tau) $ und $ c_j^\dagger(0) $ als Operatoren.
-%\begin{align*}
-%G_{ij}(\tau) &= \left\langle T\,c_i(\tau)c_j^\dagger(0)\right\rangle \\
-% &= \Theta(\tau)\bra{0}c_i(\tau)c_j^\dagger(0)\ket{0} - \Theta(-\tau)\bra{0}c_j^\dagger(0)c_i(\tau)\ket{0}\\
-% &= \Theta(\tau)\bra{0}e^{iH\tau}c_ie^{-iH\tau}c_j^\dagger\ket{0} - \Theta(-\tau)\bra{0}c_j^\dagger e^{iH\tau}c_ie^{-iH\tau}\ket{0}\\
-% &= \Theta(\tau)\bra{0}c_ie^{-i(H-E_0)\tau}c_j^\dagger\ket{0} - \Theta(-\tau)\bra{0}c_j^\dagger e^{i(H-E_0)\tau}c_i\ket{0}\\
-% &= \Theta(\tau)\sum_{m}e^{-i(E_m-E_0)\tau}\bra{0}c_i\ket{m}\bra{m}c_j^\dagger\ket{0} - \Theta(-\tau)\sum_{m}e^{i(E_m-E_0)\tau}\bra{0}c_j^\dagger\ket{m}\bra{m} c_i\ket{0}\\
-% &= \sum_{m}e^{-i(E_m-E_0)\abs{\tau}}\left[ \Theta(\tau)\bra{0}c_i\ket{m}\bra{m}c_j^\dagger\ket{0} - \Theta(-\tau)\bra{0}c_j^\dagger\ket{m}\bra{m} c_i\ket{0}\right] \\
-%\end{align*}
-%Diese Funktion kann nun Fourier-transformiert werden
-%\begin{align*}
-%	\hat{G}(\omega) &= \int_{-\infty}^{\infty}
-%\end{align*}
-%\cite{Rickayzen,schoett2014,FZJ2017}
-
-
-
-
-
-
-
-
-
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../mythesis"
-%%% End: 
+\newline
