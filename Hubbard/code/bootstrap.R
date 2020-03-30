@@ -1,4 +1,4 @@
-N <- 1000 ## anzahl datenpunkte
+N <- 50000 ## anzahl datenpunkte
 
 x <- rnorm(n=N, mean=5, sd=0.1) ## x sollten deine daten sein, ist hier normalverzeiltes set
 
@@ -14,6 +14,18 @@ xbarstar <- apply(X=xstar, MARGIN=1, FUN=mean)          ##bestimme mittelwert fÃ
 meanx <- mean(x)                                        ##mittelwert
 deltax <- sd(xbarstar)                                  ##standard abweichung von mittelwert
 
+bootstrap <- function(data = rnorm(n=1000, mean=5, sd=0.1), R=2000){
+    N <- length(data)
+    y <- sample.int(N, replace=TRUE) 
+    #xstar <- data[y]
+    y <- array(sample.int(n=N, size=R*N, replace=TRUE), dim=c(R,N))
+    xstar  <- array(data[y], dim=c(R, N))
+    xbarstar <- apply(X=xstar, MARGIN=1, FUN=mean)
+    meanx <- mean(x)
+    deltax <- sd(xbarstar)
+    output <- list(mean=meanx, sd=deltax)
+}
 
-##qqnorm(xbarstar)
-##hist(xbarstar)
+#qqnorm(xbarstar)
+hist(xbarstar)
+print(system.time({print(bootstrap(x,5000)$sd)}))
