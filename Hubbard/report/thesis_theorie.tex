@@ -3,13 +3,30 @@
 
 \section{Theoretical background}
 \subsection{The model}
-The Hubbard model, named after british Physicist John Hubbard, is a model mostly used in Condensed Matter Physics. It describes matter as a lattice on which sites particles e.g. electrons can hop to another lattice site, while in case of fermions they must, of course, respect the Pauli principle. Furthermore a Coulomb repulsion is assumed between electrons at the same lattice site. Figure \ref{fig:pic2} shows the lattice for a 2D material schematically. The onsite Coulomb repulsion is a feature that distinguishes the Hubbard model from most other models and enables it for instance to describe the transition from a metal to an insulator in certain materials. The Hamilton operator of the Hubbard model reads
+The Hubbard model, named after british Physicist John Hubbard, is a model mostly used in Condensed Matter Physics. It describes matter as a lattice on which sites particles e.g. electrons can hop to another lattice site, while in case of fermions they must, of course, respect the Pauli principle. Furthermore a Coulomb repulsion is assumed between electrons at the same lattice site.
+\begin{figure}[h!]
+	\begin{subfigure}{.5 \textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{pic2}
+		\caption{\cite{Hubbard}}
+		\label{fig:pic2}
+	\end{subfigure}
+	\begin{subfigure}{.5 \textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{pic1}
+		\caption{\cite{Hubbard2}}
+		\label{fig:pic1}
+	\end{subfigure}
+	\caption[Illustration of the Hubbard model]{(a): Twodimensional square lattice, orange points indicating atoms with one free orbital each and lattice lines indicating the permitted hops of the electrons. \\(b): Potential of a onedimensional lattice; here t denotes the kinetic energy of an electron when hopping to a neighboring lattice site (red and blue points) and U denotes the potential energy of two repulsing atoms of opposite spin.}
+	\label{HubbardFigs}
+\end{figure}
+Figure \ref{fig:pic2} shows the lattice for a 2D material schematically. The onsite Coulomb repulsion is a feature that distinguishes the Hubbard model from most other models and enables it for instance to describe the transition from a metal to an insulator in certain materials. The Hamilton operator of the Hubbard model reads
 \begin{equation}\label{Hubbard_original}
 H = \sum_{i,j}\sum_{\sigma}T_{ij} c_{i\sigma}^\dag c_{j\sigma} + \frac{I}{2} \sum_{i}n_{i\uparrow}n_{i\downarrow} - \frac{I}{2}Nn^2
 \end{equation}
 where $ c^\dag $,  $ c $ and $ n = c^\dag c $ denote the creation operator, annihilation operator and occupation number operator respectively. Hopping from one lattice to another therefore corresponds to annihilating a particle at the intial lattice site and creating one at the final site. The Parameter I represents the potential energy of the Coulomb repulsion. The matrix element $ T_{ij} $ represents the kinetic energy when hopping from lattice site $i$ to lattice site $j$ and would in general depends on the orbital overlap of both sites, but an aditional assumption is made for the particles to only be able to hop to neighboring lattice sites.  That means for a homogeneous lattice $ T_{ij} \approx -t\delta_{\langle ij \rangle} $. This assumption simplifies the matrix a lot. Also writing  $ U = \frac{I}{2} $ and omitting the constant yields the simpler form of the Hamiltonian
 \begin{equation}\label{Hubbard_standard}
-H = \underbrace{-t\sum_{\langle ij\rangle,\sigma}\left( c_{i\sigma}^\dag c_{j\sigma} + c_{j\sigma}^\dag c_{i\sigma}\right)}_{\substack{H_0}}  + \underbrace{U \sum_{i}n_{i\uparrow}n_{i\downarrow}}_{\substack{H_I}}
+H = \underbrace{-t\sum_{< i,j>,\sigma}\left( c_{i\sigma}^\dag c_{j\sigma} + c_{j\sigma}^\dag c_{i\sigma}\right)}_{\substack{H_0}}  + \underbrace{U \sum_{i}n_{i\uparrow}n_{i\downarrow}}_{\substack{H_I}}
 \end{equation}
 A pictorial representation of the meaning of the parameters $ t $ and $ U $ is illustrated in \ref{fig:pic1} with $t$ being a tunneling energy and $U$ being the potential energy of two particles on the same site. 
 $ H_I $ defines the Coulomb part of the Hamiltonian and $H_0$ the hopping part.
@@ -29,45 +46,11 @@ Inserting this in \eqref{Hubbard_momentum} gives along with \eqref{Hubbard_origi
 T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsymbol{k}\left( \boldsymbol{R}_j - \boldsymbol{R}_l\right) }
 \end{equation}
 
-\begin{figure}[h!]
-	\begin{subfigure}{.5 \textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pic2}
-		\caption{\cite{Hubbard}}
-		\label{fig:pic2}
-	\end{subfigure}
-	\begin{subfigure}{.5 \textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pic1}
-		\caption{\cite{Hubbard2}}
-		\label{fig:pic1}
-	\end{subfigure}
-\caption[Illustration of the Hubbard model]{(a): Twodimensional square lattice, orange points indicating atoms with one free orbital each and lattice lines indicating the permitted hops of the electrons. \\(b): Potential of a onedimensional lattice; here t denotes the kinetic energy of an electron when hopping to a neighboring lattice site (red and blue points) and U denotes the potential energy of two repulsing atoms of opposite spin.}
-\label{HubbardFigs}
-\end{figure}
-
-
-%nächster Absatz etwas unsicher, schau mal drüber, habe auch einen Teil weggelassen, denke das führt für dieses Pojekt zu weit, ist %nicht wirklich wichtig für das was wir machen
-
 \subsection{Symmetries of the Hamiltonian}
-From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables one to look only on the block of most interest which in our case is the half-filled case. \\
+If one considers both parts of the Hamiltonian diagonalization is not so easy. But one could in principle exploit the symmetries of the system to diagonalize it exactly. From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables one to look only on the block of most interest which in our case is the half-filled case. \\
 
 
 Another symmetry is translational invariance. When considering a lattice with periodic boundary conditions it is obvious that translating all electrons by the same lattice vector, the observable quantities will not change, since the Hamilton operator does not depend on the absolute position of an electron. This implies that some states in the basis become the same when acting with a translation operator and are therefore equivalent.\\
-After translating over a whole lattice line  (N lattice site translations) one comes back to a position that is equivalent to the original position i.e. $ T^N\ket{a} = \ket{a} $. For the eigenvalues $\lambda$ of $T$ one then has:  $ \lambda^N = 1 $, which implies $ \lambda = e^{ik} $ where $ k = m\frac{2\pi}{N} $ for $ m \in \mathbb{N}, m < N $. A momentum state $ \ket{a(k)} $ satisyfying this is 
-
-\begin{equation}\label{momentumstate}
-\ket{a(k)} = \frac{1}{\sqrt{N_a}}\sum_{r=0}^{N-1}e^{-ikr}T^r\ket{a}
-\end{equation}
-Here $ T\ket{a(k)} = e^{ik}\ket{a(k)}$ holds, with $ \ket{a} $ being a state in the local basis and $ N_a $ a normalization factor. The number of translations to get to the original configuration might be $R_a < N$. This defines $R_a$ to be the smalles possible solution of  $ T^{R_a}\ket{a} = \ket{a} $. This limits the possible $k$ and changes the normalization factor:
-\begin{equation}\label{k}
-k = m\frac{2\pi}{R_a},\qquad m \in \mathbb{N},\: m < R_a
-\end{equation}
-\begin{equation}\label{N_a}
-N_a = \frac{N^2}{R_a}.
-\end{equation}
-
-
 
 \subsection{Finding the ground state analytically}
 Finding the ground state energy is done in the next section for the 2 site model by explicit diagonalization. But this procedure becomes too time- and storage expensive for bigger lattices. For infinitely large lattices, which comes close to the case of a real material, the solution will converge to the following analytical solution

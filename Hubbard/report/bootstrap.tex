@@ -1,0 +1,9 @@
+
+\subsection{The bootstrap method}
+In order to find the errors of the mean value of our Monte-Carlo integration the bootstrap method is used. It has the advantage that it requires no information about the distribution of our results. Instead the \textit{empirical distribution} is used which is determined from the samples themselves. \\
+To perform the bootstrap we take our sample of results ($x_1$,...,$x_n$) and randomly create $m$ so called bootstrap samples ($x^{\star}_1$,...,$x^{\star}_n$) from it by permuting the $x_i$ of our original sample with replacement. Then, for each bootstrap sample $x^{\star}$ we take an estimator of the mean value. This mean value is called a \textit{bootstrap replica} of our mean value. From these $m$ bootstrap replica we can calculate the standard deviation over all of them
+\begin{equation}
+	sd(M)=\sqrt{\frac{\sum_{i=1}^{m}(M^{\star}_i-M^{\star})^2}{m-1}} \label{bootstraperror}
+\end{equation}  
+Here $M$ is the mean value for which the error was desired and $M^{\star}=\frac{1}{m}\sum_{i=1}^{m}M^{\star}_i$ is the usual mean value of the bootstrap samples \cite{computational}.
+	
