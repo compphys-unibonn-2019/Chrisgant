@@ -80,7 +80,7 @@ with the set of eigenstates $\ket{n_i}$:
 \end{align*}
 where 
 \begin{equation*}
-	D_{\pm}= \biggl(\frac{U}{2}\pm\sqrt{\frac{U^2}{4}+4t^2}\biggr)\sqrt{\biggl|\frac{64t^2}{\frac{U^2}{4}+4t^2}\biggr|^2+2}
+	D_{\pm}= \biggl(\frac{U}{2}\pm\sqrt{\frac{U^2}{4}+4t^2}\biggr)\sqrt{\biggl|\frac{\sqrt{8}t^2}{\frac{U^2}{4}+4t^2}\biggr|^2+2}
 \end{equation*}
 \clearpage
 \noindent Finally the nonvanishing components of the annihilation operators $(a^{x}_\sigma)_{i,j}$ in matrix form are
@@ -97,23 +97,3 @@ where
 	(a^2_\uparrow)_{6,1} =(a^2_\uparrow)_{2,1}=-(a^2_\uparrow)_{4,3}=(a^2_\uparrow)_{8,5}=(a^2_\uparrow)_{9,6}=(a^2_\uparrow)_{12,7}=-(a^2_\uparrow)_{14,10}=-(a^2_\uparrow)_{15,11}=-(a^2_\uparrow)_{16,13}=1
 \end{equation*}
 
-\section{Appendix B - Numeric calculation}
-\subsection{Fermion Matrix for 3 sites and $N_t=4$}\label{MM}
-\scalebox{0.9}{% 
-%\begin{equation}
-$\left(\begin{array}{cccccccccccc}
-1 & 0 & 0 & e^{-\phi_{14}} & 0 & 0 & 0 & \tilde{t} & 0 & 0 & 0 & \tilde{t}\\
--e^{-\phi_{11}} & 1 & 0 & 0 & -\tilde{t} & 0 & 0 & 0& -\tilde{t} & 0 & 0 & 0\\
-0 & -e^{-\phi_{12}} & 1 & 0 & 0 & -\tilde{t} & 0 & 0& 0 & -\tilde{t} & 0 & 0\\
-0 & 0 & -e^{-\phi_{13}} & 1 & 0 & 0 & -\tilde{t} & 0& 0 & 0 & -\tilde{t} & 0\\
- 0 & 0 & 0 & \tilde{t} &1 & 0 & 0 & e^{-\phi_{24}} &0 & 0 & 0 & \tilde{t}\\
- -\tilde{t} & 0 & 0 & 0&-e^{-\phi_{21}} & 1 & 0 & 0 &-\tilde{t} & 0 & 0 & 0\\
- 0 & -\tilde{t} & 0 & 0&0 & -e^{-\phi_{22}} & 1 & 0 &0 & -\tilde{t} & 0 & 0\\
- 0 & 0 & -\tilde{t} & 0&0 & 0 & -e^{-\phi_{23}} & 1 &0 & 0 & -\tilde{t} & 0\\
-  0 & 0 & 0 & \tilde{t}& 0 & 0 & 0 & \tilde{t}&1 & 0 & 0 & e^{-\phi_{34}} \\
- -\tilde{t} & 0 & 0 & 0&-\tilde{t} & 0 & 0 & 0&-e^{-\phi_{31}} & 1 & 0 & 0 \\
- 0 & -\tilde{t} & 0 & 0&0 & -\tilde{t} & 0 & 0&0 & -e^{-\phi_{32}} & 1 & 0\\
- 0 & 0 & -\tilde{t} & 0&0 & 0 & -\tilde{t} & 0&0 & 0 & -e^{-\phi_{33}} & 1\\
- 
-\end{array}\right)$%\end{equation}
-}
