@@ -14,7 +14,6 @@
 \usepackage{svg}
 \usepackage{url}
 \usepackage{appendixnumberbeamer}
-\usepackage{subfigure}
 \usepackage{hyperref}
 
 \usepackage{physics}
@@ -22,6 +21,7 @@
 %\usepackage{relsize}
 \usepackage{amsmath}
 \usepackage{commath}
+\usepackage{subcaption}
 \usepackage{xfrac}
 \usepackage{xcolor}
 
@@ -125,7 +125,6 @@ $ \Rightarrow $ Basis splits up
 \begin{frame}
 \frametitle{Correlation functions}
 \begin{itemize}
-	\item Canonical ensemble
 	\item Partition function 
 	\begin{equation*}
 	Z := \text{Tr}(\text{e}^{-\beta H}) = \sum_{n}^{}\text{e}^{-\beta E_n} \label{partition}
@@ -134,6 +133,10 @@ $ \Rightarrow $ Basis splits up
 \begin{equation}
 \langle{E}\rangle = \frac{1}{Z}\text{Tr} (H\text{e}^{-\beta H}) =\frac{1}{Z} \sum_{n}^{} E_n\text{e}^{-\beta E_n} \label{energy}
 \end{equation}	
+\item Correlator
+\begin{equation}
+\braket{C_{\alpha\beta}(\tau)}= \frac{1}{Z}\sum_{i}^{}\braket{i|a_{\alpha}(\tau)a^{\dagger}_{\beta}(0)|i}	\label{correlator}
+\end{equation}
 \end{itemize}
 %Die Selbstkonsistenz-Bedingung muss erfüllt sein
 \end{frame}
@@ -173,93 +176,116 @@ Z_{1}= 2 (1+\text{e}^{\beta U/2})
 
 
 \section{Methods}
-
-\subsection{Metropolis algorithm for the 1D Hubbard model}
 \begin{frame}
-\frametitle{Metropolis algorithm}
-Basisdarstellung:
-\[ \ket{L_\uparrow,L-1_\uparrow,\dots,2_\uparrow,1_\uparrow,L_\downarrow,L-1_\downarrow,\dots,2_\downarrow,1_\downarrow} \]
-Beispiel:
-\[ \ket{\downarrow_1,-_2,\uparrow\downarrow_3}\;\rightarrow \; c^\dagger_{3\uparrow}c^\dagger_{3\downarrow}c^\dagger_{1\downarrow}\ket{0} = \ket{1, 0, 0, 1, 0 , 1} = \ket{37} \]\pause
-\begin{block}{Wichtig!}
-Fermionen $ \Rightarrow $ Vorzeichenwechsel beachten!
-\[ c^\dagger_{1\uparrow}\ket{37} =  c^\dagger_{1\uparrow}c^\dagger_{3\uparrow}c^\dagger_{3\downarrow}c^\dagger_{1\downarrow}\ket{0}=-c^\dagger_{3\uparrow}c^\dagger_{1\uparrow}c^\dagger_{3\downarrow}c^\dagger_{1\downarrow}\ket{0}=-\ket{45}\]
-\end{block}
+	\frametitle{Methods}
+	\begin{itemize}
+		\item Hubbard-Stratonovich transformation
+		\item Importance sampling
+	\end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Metropolis algorithm - 2}
-\begin{block}{Impulszustand}
-\[ \ket{a(k)} = \frac{1}{\sqrt{N_a}}\sum_{r=0}^{N-1}e^{-ikr}T^r\ket{a} \]
-\end{block}
-\[ T^m\ket{a(k)} = e^{ikm}\frac{1}{\sqrt{N_a}}\sum_{r=0}^{N-1}e^{-ik(r+m)}T^{r+m}\ket{a}=e^{ikm}\ket{a(k)} \]
-\[ \bra{a(k)}O\ket{b(k)} = \pm\sqrt{\frac{N_a}{N_b}}e^{ikm} \bra{T^ma}O\ket{b} \]
-\end{frame}
-\subsection{Monte Carlo Integration}
+\subsection{Hubbard-Stratonovich transformation}
 \begin{frame}
 \frametitle{Hubbard-Stratonovich transformation}
-\begin{block}{Problem}
-Der Operator ist häufig zu groß um als Matrix gespeichert zu werden
-\end{block}
-Beispiel:
-\[ H\;\rightarrow\; \mathtt{cx\_vec\: Hamilton(uvec\: Basis,\:cx\_vec\: Psi)}\]
-
-
-\[ \ket{\psi_{out}} = \sum_{n,m}B^{-1}_{out}\ket{m}\bra{m}OB_{in}\ket{n}\bra{n}\ket{\psi_{in}} \]
-\end{frame}
-
-\begin{frame}
-\frametitle{Integration}
-\begin{enumerate}
-	\item suche Grundzustand (in allen k-Unterräumen)
-	\begin{itemize}
-		\item für jeden k-Unterraum wird ein Lanczos-Verfahren benötigt um den jeweils kleinsten Eigenwert zu finden
-	\end{itemize}
-\end{enumerate}
-\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}\vbox{}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Vorgehen beim erstellen der Spektralfunktion}
-\begin{enumerate}
-\item suche Grundzustand (in allen k-Unterräumen)
 \begin{itemize}
-	\item für jeden k-Unterraum wird ein Lanczos-Verfahren benötigt um den jeweils kleinsten Eigenwert zu finden
-	\item für den Grundzustand ein zusätzliches Lanczos-Verfahren um den Vektor in die korrekte Basis zu transformieren\pause
-	\item zur Wiederverwendung abspeichern\pause
+
+\item Calculating expectation values
+\begin{align*}\label{Pathintegral}
+\langle O(t)\rangle &= \frac{1}{Z} \operatorname{Tr}\left[O(t) e^{-\beta H}\right]\\ &=
+\frac{1}{Z} \int\left[\prod_{i} d \psi_{i}^{\dagger} d \psi_{i}\right] e^{-\Sigma_{j}\left(\psi_{j}^{\dagger} \psi_{j}\right)}\bra{-\psi}O(t) e^{-\beta H}\ket{\psi}
+\end{align*}
 \end{itemize}
-\item der passende Vernichtungsoperator wird auf den Grundzustand angewandt um den Startzustand zu erhalten\pause
-\item ein Lanczos-Verfahren wird mit dem Startvektor begonnen um die Green'sche Funktion zu erhalten\pause
-\item die Spektralfunktion wird aus der Green'schen Funktion bestimmt\pause
-\item die Schritte 2-4 werden auch für den Erzeugungsoperator wiederholt und die Spektralfunktionen werden addiert
-\end{enumerate}
 \end{frame}
 
-\section{Results}
-\subsection{Partition function...energy expectation oder so}
-%\begin{frame}
-%\frametitle{Konvergenz zur analytischen Lösung}
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=0.8\linewidth]{Praesentation-Bilder/konvergenz}
-%	\caption{Grundzustandsenergie pro Gitterplatz für U=t=1}
-%	\label{fig:konvergenz}
-%\end{figure}
-%
-%\end{frame}
-
-
-
-
-
-\section[Conclusion and Outlook]{Conclusion and Outlook}
 \begin{frame}
-\frametitle{Conclusion}
+	\frametitle{Hubbard-Stratonovich transformation - 2}
+	\begin{itemize}
+		
+		\item Trick to reduce the number of fermion fields
+		\begin{equation*}\label{linearize}
+		e^{\frac{1}{2} U n^{2}}=\frac{1}{\sqrt{2 \pi U}} \int_{-\infty}^{\infty} d \phi\: e^{-\frac{1}{2 U} \phi^{2} \pm \phi n}
+		\end{equation*}
+		\item Correlator:
+		\begin{equation*}\label{C}
+		C_{\alpha\beta}(\tau) =\lim _{N_{t} \rightarrow \infty} \int_{-\infty}^{\infty} \mathcal{D}[\phi]\:e^{-\frac{1}{2 \tilde{U}} \phi^2}M^{-1}_{\alpha\tau,\beta 0}[\phi]\det(M[\phi]M[-\phi])
+		\end{equation*}
+	\end{itemize}
+\end{frame}
+\subsection{Importance sampling}
+\begin{frame}
+\frametitle{Importance sampling}
+	\begin{itemize}
+		\item  $\sqrt{2\pi\tilde{U}}^{-1}$ included in $\mathcal{D}[\phi]$ $\Rightarrow$ sample from $\mathcal{N}_{0, \sqrt{\tilde{U}}}$
+		\item Then calculate matrix part and average
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Importance sampling - 2}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\linewidth]{figs/distribution}
+	\end{figure}
+\end{frame}
+\section{Results}
+
+\begin{frame}
+	\frametitle{Results - Partition function}
+		\begin{figure}
+			\centering
+			\begin{minipage}{.5\textwidth}
+				\centering
+				\includegraphics[width=1\linewidth]{figs/plot_Z1Nt}
+			\end{minipage}%
+			\begin{minipage}{.5\textwidth}
+				\centering
+				\includegraphics[width=1\linewidth]{figs/plot_Z1b}
+			\end{minipage}
+		\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Results - Partition function - 2}
+	\begin{figure}
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{figs/plot_Z2Nt}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{figs/plot_Z3Nt}
+		\end{minipage}
+	\end{figure}
+		
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results - Correlator}
+		\begin{figure}
+			\centering
+			\begin{minipage}{.5\textwidth}
+				\centering
+				\includegraphics[width=1\linewidth]{figs/plot_C1t}
+			\end{minipage}%
+			\begin{minipage}{.5\textwidth}
+				\centering
+				\includegraphics[width=1\linewidth]{figs/plot_C2t}
+			\end{minipage}
+		\end{figure}
+\end{frame}
+
+
+
+
+\section[Conclusion]{Conclusion}
+\begin{frame}
+\frametitle{Conclusion and Outlook}
 \begin{block}{Successes}
 \begin{itemize}
-\item 1- and 2-site partition function matching (energy, correlator?)
+\item 1- and 2-site partition function matching 
+\item 1- site correlators matching
+\item Extension to larger 1D lattices possible 
 \end{itemize}
 \end{block}
 
@@ -268,7 +294,7 @@ Beispiel:
 		\item Optimize in precision
 		\item Optimize in computing time
 		\item Higher dimensional model
-		\item Grand-canonical ensemble (pairwise creation of electrons allowed)
+		\item Grand-canonical ensemble 
 	\end{itemize}
 \end{block}
 \end{frame}
