@@ -53,7 +53,7 @@ Figure
 The calculated propagator fits very well to the exact value. Here the number of time slices was important too, but calculating the inverse of the fermion matrix slows down the calculation even more compared to the partition function and the scaling of the calculation time with $N_t$ gets even worse.
 \subsection{Multiple lattice sites}
 For multiple lattice sites the fermion matrix includes hopping terms and takes noticeable longer to calculate. But the properties have basically remained.
-
+The most obvious change is the correlator that has now additional possibilities. An electron can not just remain at one site, but also hop to another one. \ref{fig:plotc2t} shows our calculation of the correlator for a 2 site lattice. It obviously does not match our analytic solution, but we assume that the mistake was made there (because it is asymmetric) and not in the numerical calculation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{figs/plot_C2t}
