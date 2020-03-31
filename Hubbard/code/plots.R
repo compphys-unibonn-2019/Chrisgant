@@ -21,6 +21,27 @@ plot_Z1_Nt <-function(N=50000, Nt=c(4,8,16,32,64), U=2, beta=2){
 	return(invisible(out))
 }
 
+plot_Z2_Nt <-function(N=50000, Nt=c(4,8,16,32,64), U=2, beta=2){
+	x <- Nt
+    y <- c()
+	dy <- c()
+    for(n in Nt){
+        Z <- Z(N=N, L=2, N_t=n, U=U, beta=beta)
+        y <- c(y,Z$mean)
+        dy <- c(dy, Z$sd)
+    }
+    out <- data.frame(Nt=x,Z=y,dZ=dy,N,beta,U)
+    write.csv(out, "plot_data.csv")
+    Ze <- Z_2e(U=U, beta=beta)
+    pdf(file="plot.pdf")
+    plotwitherror(x=x,y=y,dy=dy,xlab="N_t",ylab="Z",main="2-Site U=2 beta=2 N=50000",xlim=c(0,tail(Nt,n=1)+1),ylim=c(0.9*min(y)-0.05,1.1*max(y)),col="blue")
+    #lines(Nt[1], Ze)
+    abline(h=Ze,col="red")
+    legend("topright",legend=c("MonteCarlo results with errors","exact result"),bty="n",col=c("blue","red"),pt.bg="blue",pch=c(21,19))
+    dev.off()
+	return(invisible(out))
+}
+
 plot_Z1_N <-function(N=c(1000,5000,10000,20000,50000,100000), Nt=32, U=2, beta=2){
 	x <- N
     y <- c()
