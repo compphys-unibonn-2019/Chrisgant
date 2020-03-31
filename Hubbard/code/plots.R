@@ -81,8 +81,32 @@ plot_Z1_b <- function(N=50000, Nt=32, U=2, beta=c(0,1,2,4,6)){
 	return(invisible(out))
 }
 
-plotwitherror<-function(x,y,dy,col="black",...) {
+plot_C2_t <- function(N=10000,Nt=32,U=2,beta=2){
+    x <- seq(0,beta*(Nt-1)/Nt,length.out=Nt)
+    y <- c()
+	dy <- c()
+    C <- C(N=N, N_t=Nt,L=2, U=U, beta=b)
+    y <- C$mean
+    dy <- C$sd
+    out <- data.frame(tau=x,C=y,dC=dy,Nt,U,N)
+    write.csv(out, "plot_C2t_data.csv")
+    pdf(file="plot_C2t.pdf")
+    plotwitherror(x=x,y=y[1:Nt],dy=dy[1:Nt],xlab="tau",ylab="Correlator",main="2-Site U=2 beta=2",xlim=c(0,beta),ylim=c(0.9*min(y)-0.05,1.1*max(y)))
+    pointswitherror(x=x,y=y[(Nt+1):(2*Nt)],dy=dy[(Nt+1):(2*Nt)])
+    #beta <- seq(0,8,0.1)
+    #lines(beta, Z_1e(U=U, beta=beta),col="red")
+    legend("topright",legend=c("C_11","C_12"),bty="n",col=c("blue","green"),pt.bg="blue",pch=1)
+    dev.off()
+	return(invisible(out))
+}
+
+plotwitherror<-function(x,y,dy,col="blue",...) {
     plot(x=x,y=y,col=col, ...)
+    arrows(x0=x,y0=y-dy,x1=x,y1=y+dy,length=0.01,angle=90,code=3,col=col)
+}
+
+pointswitherror<-function(x,y,dy,col="green",...) {
+    points(x=x,y=y,col=col, ...)
     arrows(x0=x,y0=y-dy,x1=x,y1=y+dy,length=0.01,angle=90,code=3,col=col)
 }
 

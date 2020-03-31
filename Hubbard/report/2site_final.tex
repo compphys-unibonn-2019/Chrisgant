@@ -137,14 +137,16 @@ Knowing the eigenenergies we can immediately calculate the partition function an
 \begin{align}
 	\braket{E_2}&= \sum_{i=1}^{16}E_i\text{e}^{-\beta E_i} = -3U\text{e}^{\beta U}-\text{e}^{\beta U/2}(4U\cosh(\beta t)+8t\sinh(\beta t)\\&-\text{e}^{\beta U/2}(U\cosh(\beta\sqrt{4t^2+U^2/4})+\sqrt{16t^2+U^2}\sinh(\beta\sqrt{4t^2+U^2/4}))\nonumber
 \end{align}
-After expressing the annihilation operators again in a matrix form (see Appendix A) we can find the full correlator $\braket{C_{xy\sigma\sigma^{\prime}}(\tau)}$ ($x$ and $y$ denote the lattice sites). There are only four nonvanishing components namely
+After expressing the annihilation operators again in a matrix form (see Appendix A) we can find the full correlator $\braket{C_{xy\sigma\sigma^{\prime}}(\tau)}$ ($x$ and $y$ denote the lattice sites). The nonvanishing components are
 \begin{align*}
-	\braket{C_{11\uparrow\uparrow}(\tau)}&= \frac{1}{Z_2}\biggl(\text{e}^{-U\tau}+2\text{e}^{-(t+U/2)\tau}+2\text{e}^{\beta U}\text{e}^{t\tau}\cosh(\tau U/2)+\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+\text{e}^{\beta t}+\text{e}^{(\beta+2\tau)\sqrt{4t^2+U^2/4}})\biggr)\\
-	\braket{C_{11\downarrow\downarrow}(\tau)}&= \frac{1}{Z_2}\biggl(\text{e}^{-U\tau}+2\text{e}^{-\tau U/2}\cosh(t\tau)+\text{e}^{\beta U}\text{e}^{(t+U/2)\tau}+2\text{e}^{\beta U/2}(\text{e}^{t(\beta-2\tau)}+\text{e}^{t(\beta-\tau) }\cosh(\tau\sqrt{4t^2+U^2/4}))\biggr)\\
-	\braket{C_{22\uparrow\uparrow}(\tau)}&= \frac{1}{Z_2}\biggl(1+\text{e}^{\beta U}(\text{e}^{-U\tau}+2\text{e}^{(t+U/2)\tau})+\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+2\text{e}^{t(\beta+\tau) }\cosh(\tau\sqrt{4t^2+U^2/4}))\biggr)\\
-	\braket{C_{22\downarrow\downarrow}(\tau)}&= \frac{1}{Z_2}\biggl(1+\text{e}^{-U\tau}+2\text{e}^{\beta U+(t+U/2)\tau}+2\text{e}^{\beta U/2}(\text{e}^{-t(\beta+2\tau)}+\cosh(\tau(\sqrt{4t^2+U^2/4}+t)+\beta t))\biggr)
+\braket{C_{ii\sigma\sigma}(\tau)}&= \frac{1}{Z_2}\biggl(1+\frac{1}{2}\text{e}^{\beta U}(\text{e}^{\tau(U/2-\sqrt{U^2/4+4t^2}-t)}+\frac{1}{2}\text{e}^{\tau(U/2-t)})\\&+\frac{1}{2}\text{e}^{\beta(U/2-t)}(\text{e}^{\tau(\sqrt{U^2/4+4t^2}-t)}+2+\text{e}^{\tau(U/2-t)})+\frac{1}{2}\text{e}^{\beta(U/2+t)}(\text{e}^{\tau(\sqrt{U^2/4+4t^2}-t)}+\text{e}^{\tau(-U/2+t)})\\&+\text{e}^{\beta(U/2+\sqrt{U^2/4+4t^2})}\text{e}^{\tau(t-\sqrt{U^2/4+4t^2})}(\alpha_-^2+\beta_-^2)\\&+\text{e}^{\beta(U/2-\sqrt{U^2/4+4t^2})}\text{e}^{\tau(-t-\sqrt{U^2/4+4t^2})}(\alpha_+^2+\beta_+^2)\biggr)\\
+\braket{C_{i\neq j,\sigma\sigma}(\tau)}&= \frac{1}{Z_2}\biggl(\frac{1}{2}\text{e}^{\beta(U/2-t)}(\text{e}^{\tau(\sqrt{U^2/4+4t^2}-t)}-1)-\frac{1}{2}\text{e}^{\beta(U/2+t)}(\text{e}^{2\tau t}-\text{e}^{\tau(\sqrt{U^2/4+4t^2}+t)})\biggr)
 \end{align*}
-
+here
+\begin{align*}
+\alpha_{\pm}&= 2t\biggl/\biggl(\biggl(\frac{U}{2}\pm\sqrt{\frac{U^2}{4}+4t^2}\biggr)\sqrt{\biggl|\frac{\sqrt{8} t}{\frac{U^2}{4}+4t^2}\biggr|^2+2}\biggr)\\
+\beta_{\pm}&= \frac{1}{\sqrt{\biggl|\frac{\sqrt{8} t}{\frac{U^2}{4}+4t^2}\biggr|^2+2}}
+\end{align*}
 \subsection*{Extension to the grandcanonical ensemble}
 One can also imagine a generalisation of the model where in addition to electron hops one can create or annihilate two electrons of opposite spin at an empty lattice site. The total particle number is then not conserved anymore, and the creation or annihilation of these pairs is regulated by the chemical potential $\mu$. Expectation values of an operator $A$ would then be calculated like
 \begin{equation}
