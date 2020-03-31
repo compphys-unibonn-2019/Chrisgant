@@ -175,6 +175,16 @@ C_2e <- function(beta=2,U=2,t=1,tau){
     return(C11)
 }
 
+C_2eX <- function(beta=2,U=2,t=1,tau){
+    w <- sqrt(4*t^2+U^2/4)
+    alpha <-0.37
+    b <- 0.60
+    Z <- 3*(1+exp(beta*U))+2*exp(beta*U/2)*(4*cosh(beta*t)+cosh(beta*w))
+    C12 <- (1/Z)*((1/2)*exp(beta*(U/2-t))*(exp(tau*(w-t))-1)-(1/2)*exp(beta*(U/2+t))*(exp(2*tau*t)-exp(tau*(w+t))))
+    return(C12)
+}
+
+
 C <- function(N = 50000, N_t = 32, U = 2, beta = 2,L=2 ,R=1000){
     MM <- rep(0.,N)
     MI <- matrix(data=rep(0.,N*N_t*L),ncol=N_t*L)

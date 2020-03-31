@@ -115,6 +115,7 @@ plot_C2_t <- function(N=10000,Nt=32,U=2,beta=2){
     pointswitherror(x=x,y=y[(Nt+1):(2*Nt)],dy=dy[(Nt+1):(2*Nt)])
     tau <- seq(0,beta,0.01)
     lines(tau, C_2e(U=U, beta=beta, tau=tau),col="red")
+    lines(tau, C_2eX(U=U, beta=beta, tau=tau),col="red")
     legend("topright",legend=c("C_11","C_12"),bty="n",col=c("blue","green"),pt.bg="blue",pch=1)
     dev.off()
 	return(invisible(out))
