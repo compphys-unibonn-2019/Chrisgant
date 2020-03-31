@@ -41,6 +41,26 @@ plot_Z1_N <-function(N=c(1000,5000,10000,20000,50000,100000), Nt=32, U=2, beta=2
 	return(invisible(out))
 }
 
+plot_Z2_N <-function(N=c(1000,5000,10000,20000,50000), Nt=32, U=2, beta=2){
+	x <- N
+    y <- c()
+	dy <- c()
+    for(n in N){
+        Z <- Z(N=n, L=2, N_t=Nt, U=U, beta=beta)
+        y <- c(y,Z$mean)
+        dy <- c(dy, Z$sd)
+    }
+    out <- data.frame(N=x,Z=y,dZ=dy,Nt,beta,U)
+    write.csv(out, "plot_Z2N_data.csv")
+    Ze <- Z_2e(U=U, beta=beta)
+    pdf(file="plot_Z2N.pdf")
+    plotwitherror(x=x,y=y,dy=dy,xlab="N",ylab="Z",main="2-Site U=2 beta=2 Nt=32",xlim=c(0,tail(N,n=1)+1000),ylim=c(0.9*min(y)-0.05,1.1*max(y)),col="blue")
+    abline(h=Ze,col="red")
+    legend("topright",legend=c("MonteCarlo results with errors","exact result"),bty="n",col=c("blue","red"),pt.bg="blue",pch=c(21,19))
+    dev.off()
+	return(invisible(out))
+}
+
 plot_Z1_U <- function(N=50000, Nt=32, U=c(0,1,2,4,8), beta=2){
 	x <- U
     y <- c()
@@ -73,7 +93,7 @@ plot_Z1_b <- function(N=50000, Nt=32, U=2, beta=c(0,1,2,4,6)){
     out <- data.frame(beta=x,Z=y,dZ=dy,Nt,U,N)
     write.csv(out, "plot_Z1b_data.csv")
     pdf(file="plot_Z1b.pdf")
-    plotwitherror(x=x,y=y,dy=dy,xlab="beta",ylab="Z",main="1-Site N=50000 U=2 Nt=32",xlim=c(0,tail(beta,n=1)+1),col="blue")
+    plotwitherror(x=x,y=y,dy=dy,xlab="beta",ylab="Z",main="1-Site N=50000 U=2 Nt=32",xlim=c(0,tail(beta,n=1)+1),ylim=c(0.9*min(y)-0.05,1.1*max(y)),col="blue")
     beta <- seq(0,8,0.1)
     lines(beta, Z_1e(U=U, beta=beta),col="red")
     legend("topleft",legend=c("MonteCarlo results with errors","exact result"),bty="n",col=c("blue","red"),pt.bg="blue",pch=c(21,19))
@@ -93,9 +113,28 @@ plot_C2_t <- function(N=10000,Nt=32,U=2,beta=2){
     pdf(file="plot_C2t.pdf")
     plotwitherror(x=x,y=y[1:Nt],dy=dy[1:Nt],xlab="tau",ylab="Correlator",main="2-Site U=2 beta=2",xlim=c(0,beta),ylim=c(0.9*min(y)-0.05,1.1*max(y)))
     pointswitherror(x=x,y=y[(Nt+1):(2*Nt)],dy=dy[(Nt+1):(2*Nt)])
-    #beta <- seq(0,8,0.1)
-    #lines(beta, Z_1e(U=U, beta=beta),col="red")
+    tau <- seq(0,beta,0.01)
+    lines(tau, C_2e(U=U, beta=beta, tau=tau),col="red")
     legend("topright",legend=c("C_11","C_12"),bty="n",col=c("blue","green"),pt.bg="blue",pch=1)
+    dev.off()
+	return(invisible(out))
+}
+
+plot_C1_t <- function(N=10000,Nt=32,U=2,beta=2){
+    x <- seq(0,beta*(Nt-1)/Nt,length.out=Nt)
+    y <- c()
+	dy <- c()
+    C <- C(N=N, N_t=Nt,L=1, U=U, beta=b)
+    y <- C$mean
+    dy <- C$sd
+    out <- data.frame(tau=x,C=y,dC=dy,Nt,U,N)
+    write.csv(out, "plot_C1t_data.csv")
+    pdf(file="plot_C1t.pdf")
+    plotwitherror(x=x,y=y[1:Nt],dy=dy[1:Nt],xlab="tau",ylab="Correlator",main="2-Site U=2 beta=2",xlim=c(0,beta),ylim=c(0.9*min(y)-0.05,1.1*max(y)))
+    #pointswitherror(x=x,y=y[(Nt+1):(2*Nt)],dy=dy[(Nt+1):(2*Nt)])
+    tau <- seq(0,beta,0.01)
+    lines(tau, C_1e(U=U, beta=beta, tau=tau),col="red")
+    legend("topright",legend=c("C_11"),bty="n",col=c("blue"),pt.bg="blue",pch=1)
     dev.off()
 	return(invisible(out))
 }

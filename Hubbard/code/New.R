@@ -166,6 +166,15 @@ C_1e <- function(U=2, beta = 2 ,tau=0){
     return(C)
 }
 
+C_2e <- function(beta=2,U=2,t=1,tau){
+    w <- sqrt(4*t^2+U^2/4)
+    alpha <-0.37
+    b <- 0.60
+    Z <- 3*(1+exp(beta*U))+2*exp(beta*U/2)*(4*cosh(beta*t)+cosh(beta*w))
+    C11 <- (1./Z)*(1+exp(beta*U)*(exp(tau*(U/2-w))+(1/2)*exp(tau*(U/2-t)))+(1/2)*exp(beta*(U/2-t))*(exp(tau*(w-t))+2+exp(tau*(-U/2-t)))+(1/2)*exp(beta*(U/2+t))*(exp(tau*(w-t))+exp(tau*(-U/2+t)))+exp(beta*(U/2+w))*exp(tau*(t-w))*(alpha^2+b^2)+exp(beta*(U/2-w))*exp(tau*(-w-t))*(alpha^2+b^2))
+    return(C11)
+}
+
 C <- function(N = 50000, N_t = 32, U = 2, beta = 2,L=2 ,R=1000){
     MM <- rep(0.,N)
     MI <- matrix(data=rep(0.,N*N_t*L),ncol=N_t*L)
@@ -186,6 +195,7 @@ C <- function(N = 50000, N_t = 32, U = 2, beta = 2,L=2 ,R=1000){
         Y[i] <- sqrt((b$sd/Z$mean)^2+(b$mean*Z$sd/Z$mean^2)^2)
     }
     C <- data.frame(mean=X, sd=Y)
+    
     return(C)
 }
 
