@@ -7,3 +7,14 @@ To perform the bootstrap we take our sample of results ($x_1$,...,$x_n$) and ran
 \end{equation}  
 Here $M$ is the mean value for which the error was desired and $M^{\star}=\frac{1}{m}\sum_{i=1}^{m}M^{\star}_i$ is the usual mean value of the bootstrap samples \cite{computational}.
 	
+\subsection{Metropolis-Hastings (failed attempt)}
+The following method does not work for the Hubbard-Model, but since we spent a lot of time on it, we want to introduce it anyways.
+The Metropolis-Hasting algorithm is a variant of Markov Chain Monte-Carlo where first an initial state of the system is randomly chosen.
+For example the electron configuration of a lattice. Then the system gets repeatedly the chance to change its state by spin flips, electron hops, etc. This change will be, similarly to simulated annealing, accepted with a probability \eqref{acceptance} that depends on the energy difference that the change of state causes and the inverse temperature $\beta$.
+\begin{equation}\label{acceptance}
+p_{acceptance} = \min(1,\exp(-\beta*\Delta H))
+\end{equation}
+The resulting set of states is a weighted representation of the full system as it prefers physically favorable states.
+Therefore the expectation value of an operator can be approximated by averaging over the result for each chosen state.
+This method works well for the Ising-Model, however it can not be applied to the Hubbard-Model, which has no diagonal Hamiltonian and therefore non trivial eigenstates, which are superpositions of an exponentially large number of basisstates.
+The energy(difference), which is crucial for the Metropolis algorithm, is hence not well defined for the different electron configurations.

@@ -87,8 +87,11 @@ Z_1 <- function(N = 50000, N_t = 24, U = 2, beta = 2){
     }
     #print(n)
     #print(max(MM))
-    #hist(MM[which(MM < 100)], breaks=100)
+    pdf(file="plot.pdf")
+    hist(MM[which(MM < 25)], breaks=100,main="Distribution of 50000 samples",xlab="det(M*M)")
     Z <- sum/N
+    abline(v=Z,col="blue")
+    dev.off()
     return(Z)
 }
 
