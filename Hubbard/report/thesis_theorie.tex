@@ -30,21 +30,21 @@ H = \underbrace{-t\sum_{< i,j>,\sigma}\left( c_{i\sigma}^\dag c_{j\sigma} + c_{j
 \end{equation}
 A pictorial representation of the meaning of the parameters $ t $ and $ U $ is illustrated in \ref{fig:pic1} with $t$ being a tunneling energy and $U$ being the potential energy of two particles on the same site. 
 $ H_I $ defines the Coulomb part of the Hamiltonian and $H_0$ the hopping part.
-The hopping part of the Hamiltonian $H_0$ can be diagonalized by a Fouriertransformation to momentum space 
-\begin{equation}\label{Hubbard_momentum}
-H = \sum_{\boldsymbol{k} \sigma} \epsilon_{\boldsymbol{k}} c_{\boldsymbol{k}\sigma}^\dag c_{\boldsymbol{k}\sigma}\\
-\end{equation}
-$ \epsilon_{\boldsymbol{k}} $ denotes the dispersion relation of the electrons. The creation and annihilation are not acting on different lattice sites anymore, but on electrons with momentum $ \boldsymbol{k} $. They can be calculated as Wannierfunctions of the local operators
-\begin{equation}\label{Wannier}
-\psi_{\boldsymbol{k}} \left( \boldsymbol{x}\right) = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} \phi(\boldsymbol{x}-\boldsymbol{R}_j)
-\end{equation} 
-\begin{equation}\label{c_momentum}
-c_{\boldsymbol{k}\sigma} = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}, \qquad c_{\boldsymbol{k}\sigma}^\dagger = \frac{1}{\sqrt{N}}\sum_{j} e^{-i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}^\dagger
-\end{equation}  
-Inserting this in \eqref{Hubbard_momentum} gives along with \eqref{Hubbard_original} the following expression for $ T_{ij} $ 
-\begin{equation}\label{T}
-T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsymbol{k}\left( \boldsymbol{R}_j - \boldsymbol{R}_l\right) }
-\end{equation}
+%The hopping part of the Hamiltonian $H_0$ can be diagonalized by a Fouriertransformation to momentum space 
+%\begin{equation}\label{Hubbard_momentum}
+%H = \sum_{\boldsymbol{k} \sigma} \epsilon_{\boldsymbol{k}} c_{\boldsymbol{k}\sigma}^\dag c_{\boldsymbol{k}\sigma}\\
+%\end{equation}
+%$ \epsilon_{\boldsymbol{k}} $ denotes the dispersion relation of the electrons. The creation and annihilation are not acting on different lattice sites anymore, but on electrons with momentum $ \boldsymbol{k} $. They can be calculated as Wannierfunctions of the local operators
+%\begin{equation}\label{Wannier}
+%\psi_{\boldsymbol{k}} \left( \boldsymbol{x}\right) = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} \phi(\boldsymbol{x}-\boldsymbol{R}_j)
+%\end{equation} 
+%\begin{equation}\label{c_momentum}
+%c_{\boldsymbol{k}\sigma} = \frac{1}{\sqrt{N}}\sum_{j} e^{i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}, \qquad c_{\boldsymbol{k}\sigma}^\dagger = \frac{1}{\sqrt{N}}\sum_{j} e^{-i\boldsymbol{k}\boldsymbol{R}_j} c_{j\sigma}^\dagger
+%\end{equation}  
+%Inserting this in \eqref{Hubbard_momentum} gives along with \eqref{Hubbard_original} the following expression for $ T_{ij} $ 
+%\begin{equation}\label{T}
+%T_{jl} = \frac{1}{N} \sum_{\boldsymbol{k}}\epsilon_{\boldsymbol{k}} e^{i\boldsymbol{k}\left( \boldsymbol{R}_j - \boldsymbol{R}_l\right) }
+%\end{equation}
 
 \subsection{Symmetries of the Hamiltonian}
 If one considers both parts of the Hamiltonian diagonalization is not so easy. But one could in principle exploit the symmetries of the system to diagonalize it exactly. From the above defintion \eqref{Hubbard_standard} it becomes clear that the total particle number $ \hat{N} $ as well as the total spin $ \hat{S}^2 $ and its z-component $ \hat{S}_z $ are conserved quantities. This means that in a suitable basis the matrix will decouple into smaller block matrices along the diagonal. This enables one to look only on the block of most interest which in our case is the half-filled case. \\

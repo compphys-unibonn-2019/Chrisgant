@@ -33,6 +33,20 @@ As expected from the exact solution \eqref{partition1}, $Z$ scales exponentially
 	\caption[Scaling of Z with beta]{This plot shows the scaling of $Z$ with $\beta$, while $U=2$, $N=50000$ and $N_t=32$}
 	\label{fig:plotz1b}
 \end{figure}
+
+\begin{figure}
+	\begin{subfigure}[c]{0.5\textwidth}
+		
+		\includegraphics[width=0.25\textwidth]{figs/plot_Z1U}
+		\subcaption{Subfigure Bild Nr. 1}
+		
+	\end{subfigure}
+	\begin{subfigure}[c]{0.5\textwidth}
+		\includegraphics[width=0.25\textwidth]{figs/plot_Z1b}
+		\subcaption{Subfigure Bild Nr. 2}
+	\end{subfigure}
+	\caption{Zwei Bilder mit Subfigure nebeneinander}
+\end{figure}
 The reason why they behave the same here is that, also in the algorithm (for the one site-model) $U$ and $\beta$ only appear together as $\tilde{U}=U\beta/N_t$. For more lattice sites $\beta$ will additionally be included in $\tilde{t}$.
 Furthermore we see a decrease in accuracy for higher parameters, that can be compensated by increasing $N_t$, which reduces $\tilde{U}$. We assume that the greater variance of $\phi$, that comes with a greater $\tilde{U}$, reduces the precision as it broadens the possible $\phi$.
 You can think about this physically as less change is happening between two measurements if you look more often or reduce the interaction.
@@ -47,4 +61,11 @@ Figure
 \end{figure}
 The calculated propagator fits very well to the exact value. Here the number of time slices was important too, but calculating the inverse of the fermion matrix slows down the calculation even more compared to the partition function and the scaling of the calculation time with $N_t$ gets even worse.
 \subsection{Multiple lattice sites}
-For multiple lattice sites the fermion matrix includes hopping terms
+For multiple lattice sites the fermion matrix includes hopping terms and takes noticeable longer to calculate. But the properties have basically remained.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{figs/plot_C2t}
+	\caption[Correlator 2-site]{This plot shows the Correlator from site 1 to site 1 in blue and the Correlator from site 1 to site 2 in green. The red lines mark the exact solution.}
+	\label{fig:plotc2t}
+\end{figure}

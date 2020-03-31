@@ -45,16 +45,5 @@ C_{\alpha\beta}(\tau) =\lim _{N_{t} \rightarrow \infty} \int_{-\infty}^{\infty} 
 For the calculation of $Z$ and $C_{\alpha\beta}(\tau)$ integrals over the complete phase space $\phi$ have to be solved. Luckily the integrands can be disconnected into a normal distribution probability function (remember that $\sqrt{2\pi\tilde{U}}^{-1}$ is included in $\mathcal{D}[\phi]$) and the Matrix calculations.
 Therefore instead of Monte Carlo integrating the whole integral, we sample $\phi$ by its importance from $\mathcal{N}_{0, \sqrt{\tilde{U}}}$ and calculate only the matrix part, which we then average.
 For the one site Model the sampled $\phi$ lead to energy spectra of $M[\phi]$ that look like \ref{fig:spectra}.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{figs/spectra}
-	\caption[Energy Spectra]{Energy spectra for 20 sampled $\phi$, with $U=8$, $\beta=2$ and $N_t=64$}
-	\label{fig:spectra}
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{figs/distribution}
-	\caption[Distribution of 50000 samples]{This histogram shows the distribution of 50000 samples for a calculation of $Z$ for a 1 site lattice with $U=2$, $\beta=2$ and $N_t=24$. The blue line marks the mean, i.e. the result of the calculation. (Notice that the histogram was cut to focus on the interesting part)}
-	\label{fig:distribution}
-\end{figure}
+
 Figure \ref{fig:distribution} shows how the sample calculations are distributed.
