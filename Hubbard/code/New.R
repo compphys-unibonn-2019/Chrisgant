@@ -55,14 +55,22 @@ MM <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1,beta=2){  #! not ready
     return(M)
 }
 
-M <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1,beta=2){  #! not ready for continuous boundary
+M <- function(N_t = 4, N = 2, phi_t = rep(0, N_t*N), t=1,beta=2){  
     M <- diag(x=1, nrow=N_t*N)
     t <- t*beta/N_t
     expPhi <- exp(-phi_t)
     M[row(M) == (col(M) + 1) & col(M) %% N_t != 0]   <- -expPhi[1:(N*N_t-N)]
     M[row(M) == (col(M) - N_t + 1) & col(M) %% N_t == 0]   <- +expPhi[(N*N_t-N+1):(N_t*N)]
-    M[row(M) -1 == (col(M)) %% (2*N_t) & col(M) %% N_t == 0]   <- +t
-    M[row(M) -1 == (col(M) - N_t) %% (2*N_t) & col(M) %% N_t != 0]   <- -t
+    if(N>1){
+    M[(row(M) -1) + (2*N_t) == (col(M)) & col(M) %% N_t == 0]   <- +t
+    M[(row(M) -1) - (0*N_t) == (col(M)) & col(M) %% N_t == 0]   <- +t
+    M[(row(M) -1) + (1*N_t) == (col(M)) & col(M) %% N_t != 0]   <- -t
+    M[(row(M) -1) - (1*N_t) == (col(M)) & col(M) %% N_t != 0]   <- -t
+    M[(row(M) -1) + (N*N_t) == (col(M)) & col(M) %% N_t == 0]   <- +t
+    M[(row(M) -1) - ((N-2)*N_t) == (col(M)) & col(M) %% N_t == 0]   <- +t
+    M[(row(M) -1) + ((N-1)*N_t) == (col(M)) & col(M) %% N_t != 0]   <- -t
+    M[(row(M) -1) - ((N-1)*N_t) == (col(M)) & col(M) %% N_t != 0]   <- -t
+    }
     return(M)
 }
 
@@ -102,16 +110,12 @@ Z_2 <- function(N = 50000, N_t = 4, L = 2, U = 2, beta = 2){
 }
 
 Z <- function(N = 50000, N_t = 4, L = 2, U = 2, beta = 2,R=2000){
-    sum <- 0
-    MM <- rep(0,N)
-    n <- 0
+    MM <- rep(0.,N)
     for(i in 1:N){
         phi <- samplePhi(N_t=N_t, N=L, U=U, beta=beta)
         x <- det(M(N_t=N_t, N=L, phi_t=phi,beta=beta) %*% M(N_t=N_t, N=L, phi_t=-phi,beta=beta))
         MM[i] <- x
     }
-    #print(n)
-    #hist(MM[which(MM < 3000)], breaks=80)
     Z <- bootstrap(data=MM, R=R)
     return(Z)
 }
@@ -159,6 +163,29 @@ C_1e <- function(U=2, beta = 2 ,tau=0){
     return(C)
 }
 
+C <- function(N = 50000, N_t = 32, U = 2, beta = 2,L=2 ,R=1000){
+    MM <- rep(0.,N)
+    MI <- matrix(data=rep(0.,N*N_t*L),ncol=N_t*L)
+    for(i in 1:N){
+        phi <- samplePhi(N_t=N_t*L, U=U, beta=beta)
+        M <- M(N_t=N_t, phi_t=phi,N=L)
+        MM[i] <- det(M %*% M(N_t=N_t, phi_t=-phi,N=L))
+        MI[i,] <- solve(M)[,1]
+    }
+    Z <- bootstrap(data=MM, R=R)
+    MMM <- MI * MM
+    #C <- apply(C,2,bootstrap,R=R)
+    X <- numeric()
+    Y <- numeric()
+    for(i in 1:(N_t*L)){
+        b <- bootstrap(MMM[,i])
+        X[i] <- b$mean/Z$mean
+        Y[i] <- sqrt((b$sd/Z$mean)^2+(b$mean*Z$sd/Z$mean^2)^2)
+    }
+    C <- data.frame(mean=X, sd=Y)
+    return(C)
+}
+
 plot_C_1_Nt <- function(beta=2, U=2, N=50000,N_t=24){
 	#N_t <- 48
     tau <- seq(0,beta-beta/N_t, length.out= N_t)
@@ -200,5 +227,8 @@ Figure1b <- function(sets =20, N_t = 64,U = 5, beta=3){
     for(x in 1:20){
         results <- c(results,eigen(M_1(N_t=N_t, phi_t = rnorm(n=N_t,mean=0,sd=sqrt(U*beta/N_t))))$values)
     }
-    plot(results)
+    E <- results
+    pdf(file="plot.pdf")
+    plot(E, main="20 Energy spectra of M with U=8, beta=2, N_t=64")
+    dev.off()
 }
